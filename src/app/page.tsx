@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import styles from "./page.module.css";
 
-interface FeaturedProduct {
+interface Product {
   id: string;
   name: string;
   price: number;
@@ -28,9 +28,65 @@ interface FeaturedProduct {
   rating: number;
   reviews: number;
   image: string;
+  description: string;
+  origin: string;
+  material: string;
+  dimensions: string;
 }
 
-const FEATURED_PRODUCTS: FeaturedProduct[] = [
+const ALL_PRODUCTS: Product[] = [
+  {
+    id: "prod-4",
+    name: "Pichwai Cow & Calf Jute Shopping Bag",
+    price: 599,
+    category: "Bags & Totes",
+    rating: 4.8,
+    reviews: 156,
+    image: "/pichwai_jute_bag.png",
+    description: "A beautiful hand-painted jute shopping bag featuring traditional Pichwai cow and calf art surrounded by gorgeous pink lotuses. Features sturdy handles and a durable, eco-friendly weave.",
+    origin: "Rajasthan, India",
+    material: "100% Organic Golden Jute, Natural Dyes",
+    dimensions: "35cm x 35cm x 10cm"
+  },
+  {
+    id: "prod-5",
+    name: "Under The Sea Jute Tote Bag",
+    price: 399,
+    category: "Bags & Totes",
+    rating: 4.9,
+    reviews: 242,
+    image: "/seaturtle_jute_bag.png",
+    description: "Spacious and sturdy blue jute tote bag featuring an artistic screen-printed sea turtle illustration. Ideal for daily shopping, library visits, or as an eco-friendly statement accessory.",
+    origin: "Assam, India",
+    material: "Natural Dyed Jute Yarn, Padded Cotton Handles",
+    dimensions: "38cm x 40cm x 12cm"
+  },
+  {
+    id: "prod-6",
+    name: "Madhubani Peacock Jute Lunch Bag",
+    price: 499,
+    category: "Bags & Totes",
+    rating: 4.7,
+    reviews: 184,
+    image: "/madhubani_jute_bag.png",
+    description: "Chic and compact lunch bag with blue handles, showcasing a gorgeous circular Madhubani peacock painting on the front. Features a water-resistant interior lining.",
+    origin: "Bihar, India",
+    material: "Premium Bleached Jute, Water-Resistant Laminate",
+    dimensions: "30cm x 30cm x 12cm"
+  },
+  {
+    id: "prod-7",
+    name: "Water is our best friend jute bottle bag",
+    price: 299,
+    category: "Bags & Totes",
+    rating: 4.8,
+    reviews: 96,
+    image: "/bottle_jute_bag.png",
+    description: "A tall, durable single-bottle bag with a convenient handle. Features screen-printed eco-friendly text 'WATER IS OUR BEST FRIEND' to promote hydration and plastic-free living.",
+    origin: "West Bengal, India",
+    material: "100% Raw Jute Thread, Vegan Screen Prints",
+    dimensions: "12cm x 32cm"
+  },
   {
     id: "prod-1",
     name: "Handwoven Premium Jute Rug (5x7 ft)",
@@ -39,6 +95,10 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     rating: 4.8,
     reviews: 124,
     image: "/jute_rug.png",
+    description: "A durable, heavy-weight rug with a beautiful organic texture. Braided from 100% natural golden jute. Highly resistant to wear and tear.",
+    origin: "West Bengal, India",
+    material: "100% Organic Retting Jute Fiber",
+    dimensions: "150cm x 210cm"
   },
   {
     id: "prod-2",
@@ -48,6 +108,10 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     rating: 4.9,
     reviews: 340,
     image: "/jute_bags.png",
+    description: "A spacious, lightweight carry tote bag with soft cotton padded handles, dynamic vertical stitches, and internal water-resistant laminate lining.",
+    origin: "Assam, India",
+    material: "Bleached Jute Fiber, Cotton Blend Handles",
+    dimensions: "38cm x 42cm x 12cm"
   },
   {
     id: "prod-3",
@@ -57,6 +121,10 @@ const FEATURED_PRODUCTS: FeaturedProduct[] = [
     rating: 4.7,
     reviews: 95,
     image: "/jute_baskets.png",
+    description: "Set of 3 nesting hand-braided jute baskets with reinforced rims and strong organic hanging loops.",
+    origin: "Bihar, India",
+    material: "Coarse Hand-spun Jute Twine",
+    dimensions: "S: 15cm, M: 20cm, L: 25cm"
   }
 ];
 
@@ -70,11 +138,6 @@ const HERO_IMAGES = [
     src: "/jute_rug.png",
     title: "Handwoven Jute Rugs",
     desc: "Exquisite organic textures for high-traffic rooms.",
-  },
-  {
-    src: "/jute_concrete_curing.png",
-    title: "Concrete Curing Sheets",
-    desc: "Heavy-duty wet jute sheets for curing concrete columns at construction sites.",
   },
   {
     src: "/jute_dry.png",
@@ -131,6 +194,12 @@ const USE_CASES = [
 export default function Home() {
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [enquiryProduct, setEnquiryProduct] = React.useState<any>(null);
+  const [filter, setFilter] = React.useState("All");
+
+  const filteredProducts = React.useMemo(() => {
+    if (filter === "All") return ALL_PRODUCTS;
+    return ALL_PRODUCTS.filter((p) => p.category === filter);
+  }, [filter]);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -144,7 +213,38 @@ export default function Home() {
       <div className="animate-fade-in">
         {/* 1. Hero Section */}
         <section className={styles.hero}>
-          <div className="container">
+          {/* Image Slider (Full Background) */}
+          <div className={styles.heroSlider}>
+            <div className={styles.sliderWrapper}>
+              {HERO_IMAGES.map((img, index) => (
+                <div
+                  key={img.src}
+                  className={`${styles.slide} ${currentSlide === index ? styles.activeSlide : ""}`}
+                >
+                  <div className={styles.slideImageContainer}>
+                    <img src={img.src} alt={img.title} className={styles.slideImage} />
+                  </div>
+                  <div className={styles.slideCaption}>
+                    <h3>{img.title}</h3>
+                    <p>{img.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.sliderDots}>
+              {HERO_IMAGES.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`${styles.dot} ${currentSlide === index ? styles.activeDot : ""}`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="container" style={{ position: "relative", zIndex: 10 }}>
             <div className={styles.heroGrid}>
               <div className={styles.heroContent}>
                 <div className={styles.heroTagline}>
@@ -154,44 +254,12 @@ export default function Home() {
                   Nature&apos;s Strongest <span>Weave</span>, Reimagined for You.
                 </h1>
                 <p className={styles.heroDescription}>
-                  Explore GoldenFiber, where sustainability meets luxury. Discover high-quality, carbon-negative jute products crafted to last, and dive into the biological art of jute curing (retting).
+                  Explore Ashok Enterprises, where sustainability meets luxury. Discover high-quality, carbon-negative artisanal jute products, reusable bags, and home decor handcrafted to last.
                 </p>
                 <div className={styles.heroButtons}>
                   <Link href="/shop" className={styles.primaryBtn} style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
                     Shop Jute Products <ShoppingBag size={18} />
                   </Link>
-                  <Link href="/curing" className={styles.secondaryBtn}>
-                    Explore Jute Curing
-                  </Link>
-                </div>
-              </div>
-
-              {/* Image Slider */}
-              <div className={styles.heroSlider}>
-                <div className={styles.sliderWrapper}>
-                  {HERO_IMAGES.map((img, index) => (
-                    <div
-                      key={img.src}
-                      className={`${styles.slide} ${currentSlide === index ? styles.activeSlide : ""}`}
-                      style={{ backgroundImage: `url(${img.src})` }}
-                    >
-                      <div className={styles.slideCaption}>
-                        <h3>{img.title}</h3>
-                        <p>{img.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className={styles.sliderDots}>
-                  {HERO_IMAGES.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`${styles.dot} ${currentSlide === index ? styles.activeDot : ""}`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
                 </div>
               </div>
             </div>
@@ -199,48 +267,34 @@ export default function Home() {
         </section>
 
         {/* 2. Stats Showcase */}
-        <section className={styles.statsContainer}>
-          <div className="container">
-            <div className={styles.statsGrid}>
-              <div className={styles.statItem}>
-                <div className={styles.statNum}>100%</div>
-                <div className={styles.statLabel}>Biodegradable</div>
-                <div className={styles.statDesc}>Decomposes naturally within weeks</div>
-              </div>
-              <div className={styles.statItem}>
-                <div className={styles.statNum}>15 T</div>
-                <div className={styles.statLabel}>CO2 Absorption</div>
-                <div className={styles.statDesc}>Consumes 15 tonnes of CO2 per hectare</div>
-              </div>
-              <div className={styles.statItem}>
-                <div className={styles.statNum}>120 Days</div>
-                <div className={styles.statLabel}>Harvest Cycle</div>
-                <div className={styles.statDesc}>Rapidly renewable crop</div>
-              </div>
-              <div className={styles.statItem}>
-                <div className={styles.statNum}>0%</div>
-                <div className={styles.statLabel}>Chemicals Needed</div>
-                <div className={styles.statDesc}>Minimal fertilizer and pesticides</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Featured Products Section */}
         <section className={`${styles.featuredSection} section-padding`}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.subtitle}>Best Sellers</span>
+              <span className={styles.subtitle}>Bestsellers</span>
               <h2 className={styles.sectionTitle}>Featured Artisanal Products</h2>
               <p className={styles.sectionDesc}>
                 Explore our hand-selected collection of premium jute goods. Handcrafted by local cooperatives using sustainable, organic fibers.
               </p>
             </div>
 
+            {/* Filter Tabs */}
+            <div className={styles.homeFilterTabs}>
+              {["All", "Bags & Totes", "Rugs & Mats", "Baskets & Storage"].map((cat) => (
+                <button
+                  key={cat}
+                  className={`${styles.homeFilterTab} ${filter === cat ? styles.activeHomeFilterTab : ""}`}
+                  onClick={() => setFilter(cat)}
+                >
+                  {cat === "All" ? "Show All" : cat}
+                </button>
+              ))}
+            </div>
+
             <div className={styles.featuredGrid}>
-              {FEATURED_PRODUCTS.map((product) => (
+              {filteredProducts.map((product) => (
                 <div key={product.id} className={styles.productCard}>
-                  <div className={styles.imageArea}>
+                  <div className={styles.imageArea} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>
                     <img
                       src={product.image}
                       alt={product.name}
@@ -249,7 +303,7 @@ export default function Home() {
                   </div>
                   <div className={styles.details}>
                     <span className={styles.cardCategory}>{product.category}</span>
-                    <h3 className={styles.cardName}>{product.name}</h3>
+                    <h3 className={styles.cardName} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>{product.name}</h3>
                     <div className={styles.rating}>
                       <span className={styles.stars}>
                         {"★".repeat(Math.floor(product.rating))}
@@ -279,6 +333,34 @@ export default function Home() {
               <Link href="/shop" className={styles.viewAllBtn}>
                 Explore Full Artisanal Shop <ArrowRight size={18} />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. Stats Showcase */}
+        <section className={styles.statsContainer}>
+          <div className="container">
+            <div className={styles.statsGrid}>
+              <div className={styles.statItem}>
+                <div className={styles.statNum}>100%</div>
+                <div className={styles.statLabel}>Biodegradable</div>
+                <div className={styles.statDesc}>Decomposes naturally within weeks</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNum}>15 T</div>
+                <div className={styles.statLabel}>CO2 Absorption</div>
+                <div className={styles.statDesc}>Consumes 15 tonnes of CO2 per hectare</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNum}>120 Days</div>
+                <div className={styles.statLabel}>Harvest Cycle</div>
+                <div className={styles.statDesc}>Rapidly renewable crop</div>
+              </div>
+              <div className={styles.statItem}>
+                <div className={styles.statNum}>0%</div>
+                <div className={styles.statLabel}>Chemicals Needed</div>
+                <div className={styles.statDesc}>Minimal fertilizer and pesticides</div>
+              </div>
             </div>
           </div>
         </section>
@@ -363,63 +445,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. Curing Process Teaser */}
-        <section className={styles.curingCallout}>
-          <div className="container">
-            <div className={styles.curingContent}>
-              <div className={styles.curingText}>
-                <span className={styles.curingTag}>Behind the Scenes</span>
-                <h2>The Biological Art of Jute Curing</h2>
-                <p>
-                  Before jute becomes a soft, golden bag or a tough rug, the harvested stems undergo **Retting (Curing)**. Stems are submerged in gentle, slow-flowing water where microbes dissolve the natural gums, loosening the inner fibers without damaging them.
-                </p>
-                <p>
-                  Proper curing requires precise timing, temperature, and water quality control to achieve premium Grade-A fibers.
-                </p>
-                <Link href="/curing" className={styles.curingBtn}>
-                  Try Curing Simulator <ArrowRight size={18} />
-                </Link>
-              </div>
 
-              <div className={styles.curingVisual}>
-                <div className={styles.curingImageContainer}>
-                  <img
-                    src="/jute_concrete_curing.png"
-                    alt="Concrete Curing with Jute Sheets"
-                    className={styles.curingImage}
-                  />
-                </div>
-                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.4rem", borderBottom: "1px solid rgba(255, 255, 255, 0.2)", paddingBottom: "12px" }}>
-                  3-Step Fiber Extraction Flow
-                </h3>
-
-                <div className={styles.stepRow}>
-                  <div className={styles.stepNum}>1</div>
-                  <div className={styles.stepInfo}>
-                    <h4>Submersion (Retting)</h4>
-                    <p>Stems submerged in slow water for 15-20 days at 30°C to activate bacterial breakdown.</p>
-                  </div>
-                </div>
-
-                <div className={styles.stepRow}>
-                  <div className={styles.stepNum}>2</div>
-                  <div className={styles.stepInfo}>
-                    <h4>Stripping & Washing</h4>
-                    <p>Artisans strip the loosened fiber fibers manually, rinsing off the remaining gums.</p>
-                  </div>
-                </div>
-
-                <div className={styles.stepRow}>
-                  <div className={styles.stepNum}>3</div>
-                  <div className={styles.stepInfo}>
-                    <h4>Sun Drying</h4>
-                    <p>Raw fibers are hung on racks to dry in open sunlight for 3-4 days, giving them their iconic golden sheen.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
       {/* Enquiry Contact Modal */}
       {enquiryProduct && (

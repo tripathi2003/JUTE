@@ -174,3 +174,38 @@
   padding: 8px 0;
   border-bottom: 1px solid var(--border-light);
 }
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary);
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.ctaButton:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .ctaText {
+    display: none;
+  }
+  .ctaButton {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .ctaButton {
+    display: none;
+  }
+}

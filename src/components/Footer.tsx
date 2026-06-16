@@ -38,9 +38,9 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/curing" className={styles.link}>
-                  Curing & Jobs
-                </Link>
+                <a href="tel:+919968648541" className={styles.link}>
+                  Contact Us
+                </a>
               </li>
             </ul>
           </div>

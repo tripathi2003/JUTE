@@ -352,7 +352,13 @@ export default function Checkout() {
               {cart.map((item) => (
                 <div key={item.id} className={styles.summaryItem}>
                   <div className={styles.itemLabel}>
-                    <div className={styles.itemImage}>{item.image}</div>
+                    <div className={styles.itemImage}>
+                      {item.image.startsWith("/") ? (
+                        <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "var(--radius-sm)" }} />
+                      ) : (
+                        item.image
+                      )}
+                    </div>
                     <div>
                       <div style={{ fontWeight: "600" }}>{item.name}</div>
                       <span className={styles.itemCount}>Qty: {item.quantity}</span>

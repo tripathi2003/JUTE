@@ -19,9 +19,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "GoldenFiber | Artisanal Jute Shop & Curing Hub",
-  description: "Explore eco-friendly premium Jute products and learn about natural retting and curing processes. Carbon-negative, 100% natural.",
-  keywords: "jute, organic jute, eco-friendly shopping, jute bags, jute rug, curing process, retting",
+  title: "Ashok Enterprises | Premium Artisanal Jute Shop",
+  description: "Discover eco-friendly premium jute products, handcrafted bags, rugs, and storage baskets. Carbon-negative, 100% natural and sustainable.",
+  keywords: "jute, organic jute, eco-friendly shopping, jute bags, jute rug, sustainable bags, ashok enterprises",
 };
 
 export default function RootLayout({

@@ -84,8 +84,11 @@ const SidebarCart: React.FC = () => {
             cart.map((item) => (
               <div key={item.id} className={styles.cartItem}>
                 <div className={styles.itemImage}>
-                  {/* Visual organic text or icon substitute since we can also display a simple emoji or dynamic color */}
-                  {item.image}
+                  {item.image.startsWith("/") ? (
+                    <img src={item.image} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "var(--radius-sm)" }} />
+                  ) : (
+                    item.image
+                  )}
                 </div>
                 <div className={styles.itemDetails}>
                   <div className={styles.itemMeta}>

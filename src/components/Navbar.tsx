@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Leaf } from "lucide-react";
+import { Menu, X, Leaf, Phone } from "lucide-react";
 import styles from "./Navbar.module.css";
 
 const Navbar: React.FC = () => {
@@ -13,7 +13,6 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Artisanal Shop", href: "/shop" },
-    { name: "Jute Curing", href: "/curing" },
   ];
 
   return (
@@ -46,6 +45,11 @@ const Navbar: React.FC = () => {
 
           {/* Right Action Icons */}
           <div className={styles.actions}>
+            <a href="tel:+919968648541" className={styles.ctaButton}>
+              <Phone size={16} />
+              <span className={styles.ctaText}>+91 99686 48541</span>
+            </a>
+
             {/* Mobile Menu Icon */}
             <button
               className={styles.menuButton}

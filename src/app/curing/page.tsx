@@ -217,6 +217,107 @@ export default function Curing() {
             </div>
           </div>
         </div>
+        </section>
+
+      {/* 3. Industrial Applications Section */}
+      <section className={styles.applicationsSection}>
+        <div className="container">
+          <div className={styles.bannerGrid}>
+            <div className={styles.bannerText}>
+              <span className={styles.subtitle} style={{ color: "var(--primary)", fontWeight: 600, fontSize: "0.85rem", textTransform: "uppercase" }}>Construction Curing</span>
+              <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "2.2rem", color: "var(--primary)", marginBottom: "16px" }}>
+                Concrete Curing on Construction Sites
+              </h2>
+              <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
+                Ashok Enterprises provides high-density, raw jute sheets specially woven for building construction projects. 
+                Wrapping concrete pillars, columns, and slabs with wet jute sacking sheets (Hessian bags) prevents the water from evaporating too quickly during the critical curing phase.
+              </p>
+              <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
+                By maintaining continuous dampness, our premium jute wraps ensure concrete achieves maximum compressive strength, durability, and crack resistance.
+              </p>
+            </div>
+            <div className={styles.appImageContainer}>
+              <img
+                src="/jute_concrete_curing.png"
+                alt="Wet Jute Sheets Concrete Curing on Site"
+                className={styles.appImage}
+              />
+            </div>
+          </div>
+
+          <div className={styles.bannerGrid} style={{ marginTop: "64px", direction: "rtl" }}>
+            <div className={styles.bannerText} style={{ direction: "ltr" }}>
+              <span className={styles.subtitle} style={{ color: "var(--primary)", fontWeight: 600, fontSize: "0.85rem", textTransform: "uppercase" }}>Twine & Ropes</span>
+              <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "2.2rem", color: "var(--primary)", marginBottom: "16px" }}>
+                Strong Biodegradable Ropes & Twines
+              </h2>
+              <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
+                Jute fibers are twisted and spun into multiple plies to create highly reliable, eco-friendly ropes (known locally as "rasan" or "rassa"). 
+                These are extensively used for bundling agricultural crops, secure packaging, tying construction scaffolding, and creating artisanal crafts.
+              </p>
+              <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
+                Fully biodegradable and compostable, our ropes offer excellent knot-holding ability and high tensile strength without harming the environment.
+              </p>
+            </div>
+            <div className={styles.appImageContainer}>
+              <img
+                src="/jute_rope_making.png"
+                alt="Jute Rope Twist Spinning in Factory"
+                className={styles.appImage}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Processing & Stitching Steps Section */}
+      <section className={styles.processSection}>
+        <div className="container">
+          <div className="text-center" style={{ textAlign: "center", marginBottom: "48px" }}>
+            <span className={styles.subtitle} style={{ color: "var(--primary)", fontWeight: 600, fontSize: "0.85rem", textTransform: "uppercase" }}>Jute Lifecycle</span>
+            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "var(--primary)", marginTop: "8px" }}>
+              How It is Made & Stitched
+            </h2>
+            <p style={{ maxWidth: "600px", margin: "12px auto 0 auto", opacity: 0.8, fontSize: "0.95rem" }}>
+              From biological retting to state-of-the-art weaving and industrial sewing, follow the journey of the golden fiber.
+            </p>
+          </div>
+
+          <div className={styles.processGrid}>
+            <div className={styles.processCard}>
+              <img src="/jute_curing_process.png" alt="Retting and washing" className={styles.processImage} />
+              <div className={styles.stepHeader}>
+                <div className={styles.stepNumber}>1</div>
+                <h4>Retting & Stripping</h4>
+              </div>
+              <p>
+                Harvested stalks are submerged in slow-flowing fresh water for 12 to 18 days (retting) to decompose the pectin gums. Fibers are then stripped off the woody core manually and thoroughly washed.
+              </p>
+            </div>
+
+            <div className={styles.processCard}>
+              <img src="/jute_rope_making.png" alt="Combing and spinning jute yarn" className={styles.processImage} />
+              <div className={styles.stepHeader}>
+                <div className={styles.stepNumber}>2</div>
+                <h4>Spinning & Weaving</h4>
+              </div>
+              <p>
+                Sun-dried raw golden fibers are combed and spun into strong yarns. These yarns are either twisted into heavy-duty ropes and twines, or woven on power looms into high-density jute fabrics and sacking sheets.
+              </p>
+            </div>
+
+            <div className={styles.processCard}>
+              <img src="/jute_stitching.png" alt="Stitching and bag assembly" className={styles.processImage} />
+              <div className={styles.stepHeader}>
+                <div className={styles.stepNumber}>3</div>
+                <h4>Sewing & Stitching</h4>
+              </div>
+              <p>
+                Woven jute sheets are cut and stitched using heavy-duty industrial sewing machines to create shopping bags, sacks, and custom wraps. Heavy-grade cotton thread ensures secure seams and high load-bearing limits.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
     </div>

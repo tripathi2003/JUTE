@@ -11,7 +11,8 @@ interface Product {
   category: string;
   rating: number;
   reviews: number;
-  image: string; // Emoji representative
+  image: string;
+  images: string[];
   description: string;
   origin: string;
   material: string;
@@ -20,19 +21,6 @@ interface Product {
 
 const PRODUCTS: Product[] = [
   {
-    id: "prod-1",
-    name: "Handwoven Premium Jute Rug (5x7 ft)",
-    price: 4999,
-    category: "Rugs & Mats",
-    rating: 4.8,
-    reviews: 124,
-    image: "/jute_rug.png",
-    description: "A durable, heavy-weight rug with a beautiful organic texture. Perfectly braided from 100% natural golden jute. Highly resistant to wear and tear, makes it a premium asset for high-traffic zones in modern organic styled homes.",
-    origin: "West Bengal, India",
-    material: "100% Organic Retting Jute Fiber",
-    dimensions: "150cm x 210cm"
-  },
-  {
     id: "prod-2",
     name: "Classic Artisanal Jute Tote Bag",
     price: 899,
@@ -40,23 +28,11 @@ const PRODUCTS: Product[] = [
     rating: 4.9,
     reviews: 340,
     image: "/jute_bags.png",
+    images: ["/jute_bags.png"],
     description: "A spacious, lightweight carry tote bag with soft cotton padded handles, dynamic vertical stitches, and internal water-resistant laminate lining. Perfect for everyday market shopping, library visits, or office commutes.",
     origin: "Assam, India",
     material: "Bleached Jute Fiber, Cotton Blend Handles",
     dimensions: "38cm x 42cm x 12cm"
-  },
-  {
-    id: "prod-3",
-    name: "Rustic Hanging Nesting Plant Baskets",
-    price: 1249,
-    category: "Baskets & Storage",
-    rating: 4.7,
-    reviews: 95,
-    image: "/jute_baskets.png",
-    description: "Set of 3 nesting hand-braided jute baskets with reinforced rims and strong organic hanging loops. Ideal for showcasing indoor pothos, organizing desk supplies, or storing kitchen condiments.",
-    origin: "Bihar, India",
-    material: "Coarse Hand-spun Jute Twine",
-    dimensions: "S: 15cm, M: 20cm, L: 25cm (Diameter)"
   },
   {
     id: "prod-4",
@@ -66,6 +42,7 @@ const PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 156,
     image: "/pichwai_jute_bag.png",
+    images: ["/pichwai_jute_bag.png"],
     description: "A beautiful hand-painted jute shopping bag featuring traditional Pichwai cow and calf art surrounded by gorgeous pink lotuses. Features sturdy handles and a durable, eco-friendly weave.",
     origin: "Rajasthan, India",
     material: "100% Organic Golden Jute, Natural Dyes",
@@ -79,6 +56,7 @@ const PRODUCTS: Product[] = [
     rating: 4.9,
     reviews: 242,
     image: "/seaturtle_jute_bag.png",
+    images: ["/seaturtle_jute_bag.png"],
     description: "Spacious and sturdy blue jute tote bag featuring an artistic screen-printed sea turtle illustration. Ideal for daily shopping, library visits, or as an eco-friendly statement accessory.",
     origin: "Assam, India",
     material: "Natural Dyed Jute Yarn, Padded Cotton Handles",
@@ -92,6 +70,7 @@ const PRODUCTS: Product[] = [
     rating: 4.7,
     reviews: 184,
     image: "/madhubani_jute_bag.png",
+    images: ["/madhubani_jute_bag.png"],
     description: "Chic and compact lunch bag with blue handles, showcasing a gorgeous circular Madhubani peacock painting on the front. Features a water-resistant interior lining.",
     origin: "Bihar, India",
     material: "Premium Bleached Jute, Water-Resistant Laminate",
@@ -105,36 +84,11 @@ const PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 96,
     image: "/bottle_jute_bag.png",
+    images: ["/bottle_jute_bag.png"],
     description: "A tall, durable single-bottle bag with a convenient handle. Features screen-printed eco-friendly text 'WATER IS OUR BEST FRIEND' to promote hydration and plastic-free living.",
     origin: "West Bengal, India",
     material: "100% Raw Jute Thread, Vegan Screen Prints",
     dimensions: "12cm x 32cm (Diameter x Height)"
-  },
-  {
-    id: "prod-8",
-    name: "Heavy-Duty Biodegradable Twine (3-Pack)",
-    price: 450,
-    category: "Ropes & Twine",
-    rating: 4.6,
-    reviews: 210,
-    image: "/jute_dry.png",
-    description: "Heavy-duty 3-ply organic jute rope. Extremely reliable for gardening, structural plant support, packaging bundles, and DIY macramé craft works. Fully compostable and environmentally safe.",
-    origin: "West Bengal, India",
-    material: "100% Unbleached Raw Jute Threads",
-    dimensions: "50m per roll (150m total)"
-  },
-  {
-    id: "prod-9",
-    name: "Organic Braided Table Placemats (Set of 6)",
-    price: 1499,
-    category: "Rugs & Mats",
-    rating: 4.8,
-    reviews: 82,
-    image: "/jute_rug.png",
-    description: "Heat-resistant circular dining table placemats featuring a gorgeous concentric spiral weave. Enhances your dining experience with rustic elegant charms while protecting table surfaces from heat marks.",
-    origin: "Odisha, India",
-    material: "Fine Grade-A Jute Fiber Yarn",
-    dimensions: "35cm Diameter"
   }
 ];
 
@@ -143,6 +97,15 @@ export default function Shop() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("featured");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (selectedProduct) {
+      setActiveImage(selectedProduct.images?.[0] || selectedProduct.image);
+    } else {
+      setActiveImage(null);
+    }
+  }, [selectedProduct]);
 
   const categories = ["All", "Bags & Totes", "Rugs & Mats", "Baskets & Storage", "Ropes & Twine"];
 
@@ -321,12 +284,33 @@ export default function Shop() {
             </button>
 
             <div className={styles.modalContent}>
-              <div className={styles.modalImage}>
-                <img
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
+              <div className={styles.modalImageContainer}>
+                <div className={styles.modalImage}>
+                  <img
+                    src={activeImage || selectedProduct.image}
+                    alt={selectedProduct.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+                {selectedProduct.images && selectedProduct.images.length > 1 && (
+                  <div className={styles.modalThumbnails}>
+                    {selectedProduct.images.map((imgUrl: string) => (
+                      <button
+                        key={imgUrl}
+                        className={`${styles.thumbnailBtn} ${
+                          activeImage === imgUrl ? styles.activeThumbnail : ""
+                        }`}
+                        onClick={() => setActiveImage(imgUrl)}
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`${selectedProduct.name} thumbnail`}
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className={styles.modalInfo}>
                 <span className={styles.cardCategory} style={{ fontSize: "0.8rem" }}>

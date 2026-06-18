@@ -373,6 +373,12 @@
   }
 }
 
+.modalImageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .modalImage {
   height: 320px;
   background-color: #f7f4ed;
@@ -382,6 +388,37 @@
   justify-content: center;
   font-size: 7rem;
   border: 1px solid var(--border-light);
+  overflow: hidden;
+  width: 100%;
+}
+
+.modalThumbnails {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thumbnailBtn {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-light);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  background: white;
+  transition: var(--transition);
+}
+
+.thumbnailBtn:hover {
+  border-color: var(--primary-light);
+  transform: scale(1.05);
+}
+
+.activeThumbnail {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(46, 90, 39, 0.2);
 }
 
 .modalInfo {

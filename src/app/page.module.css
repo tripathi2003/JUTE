@@ -37,7 +37,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.25) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.22) 100%);
   z-index: 5;
 }
 
@@ -81,6 +81,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(1.12) contrast(1.05) saturate(1.1);
 }
 
 .slideCaption {
@@ -162,13 +163,6 @@
 .heroTitle span {
   color: var(--neutral-light);
   text-shadow: none;
-}
-
-.heroDescription {
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.7;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .heroButtons {
@@ -364,8 +358,9 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  opacity: 0.85;
+  opacity: 0.95;
   transition: var(--transition-slow);
+  filter: brightness(1.12) contrast(1.05) saturate(1.08);
 }
 
 .useOverlay {
@@ -374,7 +369,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(34, 37, 33, 0.95) 0%, rgba(34, 37, 33, 0.4) 60%, rgba(34, 37, 33, 0.1) 100%);
+  background: linear-gradient(to top, rgba(34, 37, 33, 0.82) 0%, rgba(34, 37, 33, 0.25) 60%, rgba(34, 37, 33, 0.05) 100%);
   padding: 32px;
   display: flex;
   flex-direction: column;
@@ -390,7 +385,7 @@
 }
 
 .useCard:hover .useOverlay {
-  background: linear-gradient(to top, rgba(46, 90, 39, 0.98) 0%, rgba(46, 90, 39, 0.7) 70%, rgba(46, 90, 39, 0.3) 100%);
+  background: linear-gradient(to top, rgba(46, 90, 39, 0.88) 0%, rgba(46, 90, 39, 0.5) 70%, rgba(46, 90, 39, 0.15) 100%);
 }
 
 .useIcon {
@@ -821,6 +816,134 @@
   position: relative;
   border: 1px solid var(--border);
   animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal {
+  background-color: var(--neutral-bg);
+  border-radius: var(--radius-lg);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modalContent {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  padding: 40px;
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+}
+
+.modalImageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalImage {
+  height: 320px;
+  background-color: #f7f4ed;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7rem;
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  width: 100%;
+}
+
+.modalThumbnails {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thumbnailBtn {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-light);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  background: white;
+  transition: var(--transition);
+}
+
+.thumbnailBtn:hover {
+  border-color: var(--primary-light);
+  transform: scale(1.05);
+}
+
+.activeThumbnail {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(46, 90, 39, 0.2);
+}
+
+.modalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalTitle {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--neutral-dark);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.modalDesc {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.specTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+}
+
+.specTable td {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.9rem;
+}
+
+.specLabel {
+  font-weight: 600;
+  color: var(--primary);
+  width: 40%;
+}
+
+.modalPriceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 16px;
+}
+
+.modalPrice {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--neutral-dark);
 }
 
 .closeModal {

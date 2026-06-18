@@ -28,6 +28,7 @@ interface Product {
   rating: number;
   reviews: number;
   image: string;
+  images: string[];
   description: string;
   origin: string;
   material: string;
@@ -43,6 +44,7 @@ const ALL_PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 156,
     image: "/pichwai_jute_bag.png",
+    images: ["/pichwai_jute_bag.png"],
     description: "A beautiful hand-painted jute shopping bag featuring traditional Pichwai cow and calf art surrounded by gorgeous pink lotuses. Features sturdy handles and a durable, eco-friendly weave.",
     origin: "Rajasthan, India",
     material: "100% Organic Golden Jute, Natural Dyes",
@@ -56,6 +58,7 @@ const ALL_PRODUCTS: Product[] = [
     rating: 4.9,
     reviews: 242,
     image: "/seaturtle_jute_bag.png",
+    images: ["/seaturtle_jute_bag.png"],
     description: "Spacious and sturdy blue jute tote bag featuring an artistic screen-printed sea turtle illustration. Ideal for daily shopping, library visits, or as an eco-friendly statement accessory.",
     origin: "Assam, India",
     material: "Natural Dyed Jute Yarn, Padded Cotton Handles",
@@ -69,6 +72,7 @@ const ALL_PRODUCTS: Product[] = [
     rating: 4.7,
     reviews: 184,
     image: "/madhubani_jute_bag.png",
+    images: ["/madhubani_jute_bag.png"],
     description: "Chic and compact lunch bag with blue handles, showcasing a gorgeous circular Madhubani peacock painting on the front. Features a water-resistant interior lining.",
     origin: "Bihar, India",
     material: "Premium Bleached Jute, Water-Resistant Laminate",
@@ -82,23 +86,11 @@ const ALL_PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 96,
     image: "/bottle_jute_bag.png",
+    images: ["/bottle_jute_bag.png"],
     description: "A tall, durable single-bottle bag with a convenient handle. Features screen-printed eco-friendly text 'WATER IS OUR BEST FRIEND' to promote hydration and plastic-free living.",
     origin: "West Bengal, India",
     material: "100% Raw Jute Thread, Vegan Screen Prints",
     dimensions: "12cm x 32cm"
-  },
-  {
-    id: "prod-1",
-    name: "Handwoven Premium Jute Rug (5x7 ft)",
-    price: 4999,
-    category: "Rugs & Mats",
-    rating: 4.8,
-    reviews: 124,
-    image: "/jute_rug.png",
-    description: "A durable, heavy-weight rug with a beautiful organic texture. Braided from 100% natural golden jute. Highly resistant to wear and tear.",
-    origin: "West Bengal, India",
-    material: "100% Organic Retting Jute Fiber",
-    dimensions: "150cm x 210cm"
   },
   {
     id: "prod-2",
@@ -108,41 +100,34 @@ const ALL_PRODUCTS: Product[] = [
     rating: 4.9,
     reviews: 340,
     image: "/jute_bags.png",
+    images: ["/jute_bags.png"],
     description: "A spacious, lightweight carry tote bag with soft cotton padded handles, dynamic vertical stitches, and internal water-resistant laminate lining.",
     origin: "Assam, India",
     material: "Bleached Jute Fiber, Cotton Blend Handles",
     dimensions: "38cm x 42cm x 12cm"
-  },
-  {
-    id: "prod-3",
-    name: "Rustic Hanging Nesting Plant Baskets",
-    price: 1249,
-    category: "Baskets & Storage",
-    rating: 4.7,
-    reviews: 95,
-    image: "/jute_baskets.png",
-    description: "Set of 3 nesting hand-braided jute baskets with reinforced rims and strong organic hanging loops.",
-    origin: "Bihar, India",
-    material: "Coarse Hand-spun Jute Twine",
-    dimensions: "S: 15cm, M: 20cm, L: 25cm"
   }
 ];
 
 const HERO_IMAGES = [
   {
+    src: "/collection_traditional.png",
+    title: "Premium Artisanal Art",
+    desc: "Hand-painted carry bags showcasing traditional Indian folk art.",
+  },
+  {
+    src: "/collection_modern.png",
+    title: "Modern Screen-Printed Totes",
+    desc: "Chic, minimal golden and ocean blue totes for daily commutes.",
+  },
+  {
+    src: "/collection_utility.png",
+    title: "Utility Bottle Bags & Planters",
+    desc: "Cozy home decor, braided baskets, and raw utility wraps.",
+  },
+  {
     src: "/jute_bags.png",
-    title: "Eco-Friendly Carry Bags",
-    desc: "Chic, reusable jute totes for modern daily life.",
-  },
-  {
-    src: "/jute_rug.png",
-    title: "Handwoven Jute Rugs",
-    desc: "Exquisite organic textures for high-traffic rooms.",
-  },
-  {
-    src: "/jute_dry.png",
-    title: "Raw Golden Fiber",
-    desc: "Sun-dried carbon-negative stalks ready for processing.",
+    title: "Eco-Friendly Classic Carry Bags",
+    desc: "High-density golden jute totes built for strength and daily use.",
   },
 ];
 
@@ -195,6 +180,15 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [enquiryProduct, setEnquiryProduct] = React.useState<any>(null);
   const [filter, setFilter] = React.useState("All");
+  const [activeImage, setActiveImage] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (enquiryProduct) {
+      setActiveImage(enquiryProduct.images?.[0] || enquiryProduct.image);
+    } else {
+      setActiveImage(null);
+    }
+  }, [enquiryProduct]);
 
   const filteredProducts = React.useMemo(() => {
     if (filter === "All") return ALL_PRODUCTS;
@@ -247,20 +241,6 @@ export default function Home() {
           <div className="container" style={{ position: "relative", zIndex: 10 }}>
             <div className={styles.heroGrid}>
               <div className={styles.heroContent}>
-                <div className={styles.heroTagline}>
-                  <Leaf size={16} /> Nature&apos;s Premium Eco-Fiber
-                </div>
-                <h1 className={styles.heroTitle}>
-                  Nature&apos;s Strongest <span>Weave</span>, Reimagined for You.
-                </h1>
-                <p className={styles.heroDescription}>
-                  Explore Ashok Enterprises, where sustainability meets luxury. Discover high-quality, carbon-negative artisanal jute products, reusable bags, and home decor handcrafted to last.
-                </p>
-                <div className={styles.heroButtons}>
-                  <Link href="/shop" className={styles.primaryBtn} style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                    Shop Jute Products <ShoppingBag size={18} />
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
@@ -450,37 +430,99 @@ export default function Home() {
       {/* Enquiry Contact Modal */}
       {enquiryProduct && (
         <div className={styles.modalOverlay} onClick={() => setEnquiryProduct(null)}>
-          <div className={styles.contactModal} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeModal} onClick={() => setEnquiryProduct(null)} aria-label="Close modal">
               <X size={20} />
             </button>
-            <h3 className={styles.contactTitle}>Order / Enquiry</h3>
-            <p className={styles.contactText}>
-              Interested in purchasing <strong>{enquiryProduct.name}</strong>?
-            </p>
-            <p className={styles.contactText} style={{ marginBottom: "20px" }}>
-              Please contact <strong>Ashok Enterprises</strong> directly to place your order or enquire about wholesale rates:
-            </p>
+            <div className={styles.modalContent}>
+              <div className={styles.modalImageContainer}>
+                <div className={styles.modalImage}>
+                  <img
+                    src={activeImage || enquiryProduct.image}
+                    alt={enquiryProduct.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+                {enquiryProduct.images && enquiryProduct.images.length > 1 && (
+                  <div className={styles.modalThumbnails}>
+                    {enquiryProduct.images.map((imgUrl: string) => (
+                      <button
+                        key={imgUrl}
+                        className={`${styles.thumbnailBtn} ${
+                          activeImage === imgUrl ? styles.activeThumbnail : ""
+                        }`}
+                        onClick={() => setActiveImage(imgUrl)}
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`${enquiryProduct.name} thumbnail`}
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-            <div className={styles.contactButtons}>
-              <a
-                href="tel:+919968648541"
-                className={styles.contactPhoneBtn}
-              >
-                <Phone size={18} /> Call: +91 99686 48541
-              </a>
-              <a
-                href={`https://wa.me/919968648541?text=Hi,%20I%20am%20interested%20in%20ordering%20"${enquiryProduct.name}"%20(Price:%20₹${enquiryProduct.price})`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.contactWhatsappBtn}
-              >
-                <MessageCircle size={18} /> WhatsApp: +91 99686 48541
-              </a>
-            </div>
+              <div className={styles.modalInfo}>
+                <span className={styles.cardCategory} style={{ fontSize: "0.8rem" }}>
+                  {enquiryProduct.category}
+                </span>
+                <h2 className={styles.modalTitle}>{enquiryProduct.name}</h2>
+                <div className={styles.rating}>
+                  <span className={styles.stars}>
+                    {"★".repeat(Math.floor(enquiryProduct.rating))}
+                  </span>
+                  <span>
+                    {enquiryProduct.rating} ({enquiryProduct.reviews} Verified Buyer Reviews)
+                  </span>
+                </div>
+                <p className={styles.modalDesc}>{enquiryProduct.description}</p>
 
-            <div style={{ marginTop: "24px", fontSize: "0.85rem", opacity: 0.7, textAlign: "center" }}>
-              📍 Address: Street No.1, 4th Pustha Rd, Kartar Nagar, Delhi - 110053
+                {/* Specs */}
+                <table className={styles.specTable}>
+                  <tbody>
+                    <tr>
+                      <td className={styles.specLabel}>Sourced From</td>
+                      <td>{enquiryProduct.origin}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.specLabel}>Material Base</td>
+                      <td>{enquiryProduct.material}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.specLabel}>Average Size</td>
+                      <td>{enquiryProduct.dimensions}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div className={styles.modalPriceRow} style={{ flexDirection: "column", alignItems: "stretch", gap: "16px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+                    <span className={styles.modalPrice} style={{ margin: 0 }}>
+                      ₹{enquiryProduct.price.toLocaleString("en-IN")}
+                    </span>
+                    <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>Direct Order Price</span>
+                  </div>
+                  
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px", width: "100%" }}>
+                    <a
+                      href="tel:+919968648541"
+                      className={styles.contactPhoneBtn}
+                    >
+                      <Phone size={18} /> Call: +91 99686 48541
+                    </a>
+                    <a
+                      href={`https://wa.me/919968648541?text=Hi,%20I%20am%20interested%20in%20ordering%20"${enquiryProduct.name}"%20(Price:%20₹${enquiryProduct.price})`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.contactWhatsappBtn}
+                    >
+                      <MessageCircle size={18} /> WhatsApp: +91 99686 48541
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SidebarCart from "@/components/SidebarCart";
 import { CartProvider } from "@/context/CartContext";
 
 const playfair = Playfair_Display({
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <CartProvider>
           <Navbar />
+          <SidebarCart />
           <main style={{ flex: 1 }}>{children}</main>
           <Footer />
         </CartProvider>
@@ -41,3 +43,4 @@ export default function RootLayout({
     </html>
   );
 }
+

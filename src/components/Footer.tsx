@@ -13,9 +13,7 @@ const Footer: React.FC = () => {
           {/* Brand Col */}
           <div className={styles.col}>
             <Link href="/" className={styles.brand}>
-              <span className={styles.brandIcon}>
-                <Leaf size={24} fill="currentColor" />
-              </span>
+              <img src="/logo.png" alt="Ashok Enterprises Logo" className={styles.brandLogoImage} />
               Ashok<span className={styles.brandSpan}>Enterprises</span>
             </Link>
             <p className={styles.description}>
@@ -35,6 +33,11 @@ const Footer: React.FC = () => {
               <li>
                 <Link href="/shop" className={styles.link}>
                   Artisanal Shop
+                </Link>
+              </li>
+              <li>
+                <Link href="/curing" className={styles.link}>
+                  Curing Materials
                 </Link>
               </li>
               <li>

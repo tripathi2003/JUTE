@@ -108,6 +108,51 @@ const ALL_PRODUCTS: Product[] = [
   }
 ];
 
+const FEATURED_CURING_PRODUCTS: Product[] = [
+  {
+    id: "raw-curing-sheet",
+    name: "Concrete Curing Jute Sheet (Hessian Wrap)",
+    price: 4500,
+    category: "Curing Materials",
+    rating: 4.8,
+    reviews: 142,
+    image: "/raw_concrete_curing.png",
+    images: ["/raw_concrete_curing.png", "/curing_sheet_detail.png"],
+    description: "Heavy-duty, high water-retentive natural jute sheets. Designed specifically for construction sites to wrap concrete columns, beams, and slabs to prevent rapid evaporation and ensure maximum concrete strength.",
+    origin: "West Bengal, India",
+    material: "350 GSM Jute (High Density)",
+    dimensions: "1.2m x 100m Roll"
+  },
+  {
+    id: "raw-hessian-roll",
+    name: "Premium Burlap Hessian Roll",
+    price: 2800,
+    category: "Hessian Cloth",
+    rating: 4.9,
+    reviews: 198,
+    image: "/raw_hessian_roll.png",
+    images: ["/raw_hessian_roll.png", "/hessian_roll_detail.png"],
+    description: "Natural brown raw jute fabric in rolls. Perfect for agricultural root ball wrapping, landscaping, soil erosion control (geotextiles), frost protection, and bulk rustic decorations.",
+    origin: "Assam, India",
+    material: "280 GSM Jute (Medium Weave)",
+    dimensions: "1.5m x 50m Roll"
+  },
+  {
+    id: "raw-gunny-bags",
+    name: "Bulk Jute Sacking Bags (Gunny Bags)",
+    price: 420,
+    category: "Packing Sacks",
+    rating: 4.7,
+    reviews: 215,
+    image: "/raw_gunny_bags.png",
+    images: ["/raw_gunny_bags.png", "/gunny_bags_detail.png"],
+    description: "Traditional high-capacity double-sewed jute sacking sacks. Extremely robust, breathable, and designed for heavy warehouse storage of grains, rice, potatoes, onions, and agricultural logistics.",
+    origin: "West Bengal, India",
+    material: "480 GSM Jute (Extra Heavy)",
+    dimensions: "Pack of 10 Bags (65cm x 105cm)"
+  }
+];
+
 const HERO_IMAGES = [
   {
     src: "/collection_traditional.png",
@@ -312,6 +357,62 @@ export default function Home() {
             <div className={styles.centerContainer}>
               <Link href="/shop" className={styles.viewAllBtn}>
                 Explore Full Artisanal Shop <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Curing & Raw Materials Section */}
+        <section className={`${styles.featuredSection} section-padding`} style={{ borderTop: "1px solid var(--border-light)", backgroundColor: "var(--background)" }}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <span className={styles.subtitle}>Industrial Grade</span>
+              <h2 className={styles.sectionTitle}>Featured Curing & Raw Materials</h2>
+              <p className={styles.sectionDesc}>
+                High-density concrete curing sheets, heavy-duty packing sacks, and eco-friendly burlap rolls directly from production units.
+              </p>
+            </div>
+
+            <div className={styles.featuredGrid}>
+              {FEATURED_CURING_PRODUCTS.map((product) => (
+                <div key={product.id} className={styles.productCard}>
+                  <div className={styles.imageArea} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  </div>
+                  <div className={styles.details}>
+                    <span className={styles.cardCategory}>{product.category}</span>
+                    <h3 className={styles.cardName} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>{product.name}</h3>
+                    <div className={styles.rating}>
+                      <span className={styles.stars}>
+                        {"★".repeat(Math.floor(product.rating))}
+                      </span>
+                      <span>
+                        {product.rating} ({product.reviews})
+                      </span>
+                    </div>
+                    <div className={styles.priceRow}>
+                      <span className={styles.price}>
+                        ₹{product.price.toLocaleString("en-IN")}
+                      </span>
+                      <button
+                        className={styles.addBtn}
+                        onClick={() => setEnquiryProduct(product)}
+                      >
+                        <Phone size={14} /> Buy / Enquire
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.centerContainer}>
+              <Link href="/curing" className={styles.viewAllBtn}>
+                Explore All Curing Materials <ArrowRight size={18} />
               </Link>
             </div>
           </div>

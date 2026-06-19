@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Leaf, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import styles from "./Navbar.module.css";
 
 const Navbar: React.FC = () => {
@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Artisanal Shop", href: "/shop" },
+    { name: "Curing Materials", href: "/curing" },
   ];
 
   return (
@@ -21,9 +22,7 @@ const Navbar: React.FC = () => {
         <div className={styles.navContainer}>
           {/* Logo */}
           <Link href="/" className={styles.logo}>
-            <span className={styles.logoIcon}>
-              <Leaf size={24} fill="currentColor" />
-            </span>
+            <img src="/logo.png" alt="Ashok Enterprises Logo" className={styles.logoImage} />
             Ashok <span className={styles.logoTextSpan}>Enterprises</span>
           </Link>
 
@@ -83,4 +82,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-// reload ts watcher

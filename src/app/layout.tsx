@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SidebarCart from "@/components/SidebarCart";
+import FloatingContact from "@/components/FloatingContact";
 import { CartProvider } from "@/context/CartContext";
 
 const playfair = Playfair_Display({
@@ -36,6 +37,7 @@ export default function RootLayout({
         <CartProvider>
           <Navbar />
           <SidebarCart />
+          <FloatingContact />
           <main style={{ flex: 1 }}>{children}</main>
           <Footer />
         </CartProvider>

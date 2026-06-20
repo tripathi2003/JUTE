@@ -165,6 +165,14 @@
   text-shadow: none;
 }
 
+.heroDesc {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.15rem;
+  max-width: 600px;
+  line-height: 1.6;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
 .heroButtons {
   display: flex;
   gap: 16px;
@@ -587,6 +595,10 @@
   .heroTitle {
     font-size: 3rem;
   }
+  .heroDesc {
+    font-size: 1rem;
+    max-width: 100%;
+  }
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -616,6 +628,9 @@
   }
   .heroTitle {
     font-size: 2.3rem;
+  }
+  .heroDesc {
+    font-size: 0.95rem;
   }
   .heroButtons {
     flex-direction: column;
@@ -675,8 +690,16 @@
 
 .productCard:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--border);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.productCard .imageArea img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.productCard:hover .imageArea img {
+  transform: scale(1.06);
 }
 
 .imageArea {

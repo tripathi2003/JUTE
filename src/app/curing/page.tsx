@@ -84,21 +84,6 @@ const PRODUCTS: ProductType[] = [
     images: ["/raw_gunny_bags.png", "/gunny_bags_detail.png"]
   },
   {
-    id: "raw-jute-twine",
-    name: "Natural Jute Twine Spools (Sutli)",
-    price: 150,
-    category: "Twines",
-    description: "Classic 3-ply natural jute twine spools. Strong, biodegradable, and easy to handle. Perfect for tying packages, garden binding, artisanal tagging, and agricultural nursery use.",
-    specs: {
-      dimensions: "500g Spool (approx. 250m)",
-      thickness: "2.5mm (3-ply)",
-      feature: "Soft & High Knot Strength",
-      origin: "West Bengal, India"
-    },
-    image: "/jute_twine.png",
-    images: ["/jute_twine.png", "/jute_twine_detail.png"]
-  },
-  {
     id: "raw-sacking-bag",
     name: "Heavy-Grade Jute Sacking Rolls",
     price: 3200,

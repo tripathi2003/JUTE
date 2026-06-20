@@ -10,6 +10,21 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const ANNOUNCEMENTS = [
+    "🌱 100% Organic & Biodegradable Premium Jute",
+    "🏗️ Heavy-Duty Concrete Curing Jute Sheets (Hessian Wraps)",
+    "📞 Bulk Orders & Inquiries: +91 99686 48541"
+  ];
+
+  const [announcementIndex, setAnnouncementIndex] = useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setAnnouncementIndex((prev) => (prev + 1) % ANNOUNCEMENTS.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Artisanal Shop", href: "/shop" },
@@ -19,6 +34,22 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header className={styles.header}>
+        {/* Announcement Bar */}
+        <div className={styles.announcementBar}>
+          <div className={styles.announcementWrapper}>
+            {ANNOUNCEMENTS.map((text, idx) => (
+              <div
+                key={idx}
+                className={`${styles.announcementItem} ${
+                  idx === announcementIndex ? styles.announcementActive : ""
+                }`}
+              >
+                {text}
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className={styles.navContainer}>
           {/* Logo */}
           <Link href="/" className={styles.logo}>

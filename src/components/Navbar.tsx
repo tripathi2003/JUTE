@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
         <div className={styles.navContainer}>
           {/* Logo */}
           <Link href="/" className={styles.logo}>
-            <img src="/logo.png" alt="Ashok Enterprises Logo" className={styles.logoImage} />
+            <img src="/brand_logo_final.png" alt="Ashok Enterprises Logo" className={styles.logoImage} />
             Ashok <span className={styles.logoTextSpan}>Enterprises</span>
           </Link>
 

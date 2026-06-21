@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           {/* Brand Col */}
           <div className={styles.col}>
             <Link href="/" className={styles.brand}>
-              <img src="/logo.png" alt="Ashok Enterprises Logo" className={styles.brandLogoImage} />
+              <img src="/brand_logo_final.png" alt="Ashok Enterprises Logo" className={styles.brandLogoImage} />
               Ashok<span className={styles.brandSpan}>Enterprises</span>
             </Link>
             <p className={styles.description}>

@@ -1,96 +1,18 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Search, X, ArrowUpDown, Phone, MessageCircle } from "lucide-react";
+import { Search, X, ArrowUpDown, Phone, MessageCircle, ShoppingBag, Briefcase, ShoppingBasket, Coffee, Gift, ChevronRight } from "lucide-react";
 import styles from "./shop.module.css";
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  rating: number;
-  reviews: number;
-  image: string;
-  images: string[];
-  description: string;
-  origin: string;
-  material: string;
-  dimensions: string;
-}
+import { PRODUCTS, type Product } from "../../data/products";
 
-const PRODUCTS: Product[] = [
-  {
-    id: "prod-2",
-    name: "Classic Artisanal Jute Tote Bag",
-    price: 899,
-    category: "Bags & Totes",
-    rating: 4.9,
-    reviews: 340,
-    image: "/jute_bags.png",
-    images: ["/jute_bags.png"],
-    description: "A spacious, lightweight carry tote bag with soft cotton padded handles, dynamic vertical stitches, and internal water-resistant laminate lining. Perfect for everyday market shopping, library visits, or office commutes.",
-    origin: "Assam, India",
-    material: "Bleached Jute Fiber, Cotton Blend Handles",
-    dimensions: "38cm x 42cm x 12cm"
-  },
-  {
-    id: "prod-4",
-    name: "Pichwai Cow & Calf Jute Shopping Bag",
-    price: 599,
-    category: "Bags & Totes",
-    rating: 4.8,
-    reviews: 156,
-    image: "/pichwai_jute_bag.png",
-    images: ["/pichwai_jute_bag.png"],
-    description: "A beautiful hand-painted jute shopping bag featuring traditional Pichwai cow and calf art surrounded by gorgeous pink lotuses. Features sturdy handles and a durable, eco-friendly weave.",
-    origin: "Rajasthan, India",
-    material: "100% Organic Golden Jute, Natural Dyes",
-    dimensions: "35cm x 35cm x 10cm"
-  },
-  {
-    id: "prod-5",
-    name: "Under The Sea Jute Tote Bag",
-    price: 399,
-    category: "Bags & Totes",
-    rating: 4.9,
-    reviews: 242,
-    image: "/seaturtle_jute_bag.png",
-    images: ["/seaturtle_jute_bag.png"],
-    description: "Spacious and sturdy blue jute tote bag featuring an artistic screen-printed sea turtle illustration. Ideal for daily shopping, library visits, or as an eco-friendly statement accessory.",
-    origin: "Assam, India",
-    material: "Natural Dyed Jute Yarn, Padded Cotton Handles",
-    dimensions: "38cm x 40cm x 12cm"
-  },
-  {
-    id: "prod-6",
-    name: "Madhubani Peacock Jute Lunch Bag",
-    price: 499,
-    category: "Bags & Totes",
-    rating: 4.7,
-    reviews: 184,
-    image: "/madhubani_jute_bag.png",
-    images: ["/madhubani_jute_bag.png"],
-    description: "Chic and compact lunch bag with blue handles, showcasing a gorgeous circular Madhubani peacock painting on the front. Features a water-resistant interior lining.",
-    origin: "Bihar, India",
-    material: "Premium Bleached Jute, Water-Resistant Laminate",
-    dimensions: "30cm x 30cm x 12cm"
-  },
-  {
-    id: "prod-7",
-    name: "Water is our best friend jute bottle bag",
-    price: 299,
-    category: "Bags & Totes",
-    rating: 4.8,
-    reviews: 96,
-    image: "/bottle_jute_bag.png",
-    images: ["/bottle_jute_bag.png"],
-    description: "A tall, durable single-bottle bag with a convenient handle. Features screen-printed eco-friendly text 'WATER IS OUR BEST FRIEND' to promote hydration and plastic-free living.",
-    origin: "West Bengal, India",
-    material: "100% Raw Jute Thread, Vegan Screen Prints",
-    dimensions: "12cm x 32cm (Diameter x Height)"
-  }
-];
+const CATEGORY_ICONS: Record<string, React.ComponentType<any>> = {
+  "All": ShoppingBag,
+  "Tote Bags": Briefcase,
+  "Shopping Bags": ShoppingBasket,
+  "Lunch & Bottle Bags": Coffee,
+  "Gift Bags": Gift
+};
 
 export default function Shop() {
   const [search, setSearch] = useState("");
@@ -107,7 +29,7 @@ export default function Shop() {
     }
   }, [selectedProduct]);
 
-  const categories = ["All", "Bags & Totes", "Rugs & Mats", "Baskets & Storage", "Ropes & Twine"];
+  const categories = ["All", "Tote Bags", "Shopping Bags", "Lunch & Bottle Bags", "Gift Bags"];
 
   // Filter & Sort Logic
   const filteredProducts = useMemo(() => {
@@ -176,16 +98,26 @@ export default function Shop() {
                 <div className={styles.filterBox}>
                   <h3 className={styles.filterTitle}>Categories</h3>
                   <div className={styles.categoryList}>
-                    {categories.map((cat) => (
-                      <button
-                        key={cat}
-                        className={`${styles.categoryBtn} ${selectedCategory === cat ? styles.activeCategory : ""
+                    {categories.map((cat) => {
+                      const Icon = CATEGORY_ICONS[cat] || ShoppingBag;
+                      return (
+                        <button
+                          key={cat}
+                          className={`${styles.categoryBtn} ${
+                            selectedCategory === cat ? styles.activeCategory : ""
                           }`}
-                        onClick={() => setSelectedCategory(cat)}
-                      >
-                        {cat}
-                      </button>
-                    ))}
+                          onClick={() => setSelectedCategory(cat)}
+                        >
+                          <div className={styles.categoryBtnContent}>
+                            <Icon size={16} className={styles.categoryIcon} />
+                            <span>{cat}</span>
+                          </div>
+                          {selectedCategory === cat && (
+                            <ChevronRight size={14} className={styles.activeChevron} />
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </aside>

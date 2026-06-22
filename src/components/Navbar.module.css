@@ -134,6 +134,29 @@
   cursor: pointer;
   padding: 8px;
   color: var(--foreground);
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: var(--radius-full);
+}
+
+.menuButton:hover {
+  color: var(--primary);
+  transform: scale(1.05);
+}
+
+.menuButton:active {
+  transform: scale(0.95);
+}
+
+.menuIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menuButtonActive .menuIconContainer {
+  transform: rotate(180deg);
 }
 
 /* Mobile responsive navigation styles */
@@ -152,18 +175,21 @@
   top: 120px;
   left: 0;
   width: 100%;
-  background-color: var(--background);
+  background-color: rgba(250, 247, 242, 0.98);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  padding: 24px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   z-index: 49;
-  box-shadow: var(--shadow-md);
-  transform: translateY(-100%);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-15px);
   opacity: 0;
   pointer-events: none;
-  transition: var(--transition);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              backdrop-filter 0.4s ease;
 }
 
 .mobileMenuOpen {
@@ -173,11 +199,42 @@
 }
 
 .mobileLink {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 500;
-  padding: 8px 0;
+  padding: 16px 12px;
+  color: var(--foreground);
   border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease;
+  border-radius: var(--radius-sm);
 }
+
+.mobileLink:last-child {
+  border-bottom: none;
+}
+
+.mobileLink:hover, .mobileLink:active {
+  color: var(--primary);
+  padding-left: 20px;
+  background-color: var(--primary-light);
+}
+
+.mobileMenuOpen .mobileLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileMenuOpen .mobileLink:nth-child(1) { transition-delay: 0.05s; }
+.mobileMenuOpen .mobileLink:nth-child(2) { transition-delay: 0.10s; }
+.mobileMenuOpen .mobileLink:nth-child(3) { transition-delay: 0.15s; }
 
 .ctaButton {
   display: inline-flex;

@@ -1,10 +1,13 @@
 .hero {
-  min-height: 85vh;
+  width: 100%;
+  height: 75vh;
+  min-height: 600px;
+  max-height: 800px;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 100px 0;
+  padding: 0;
 }
 
 .heroGrid {
@@ -80,14 +83,14 @@
 .slideImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   filter: brightness(1.12) contrast(1.05) saturate(1.1);
 }
 
 .slideCaption {
   position: absolute;
-  bottom: 80px;
-  right: 80px;
+  bottom: 40px;
+  right: 40px;
   text-align: right;
   z-index: 8;
   max-width: 400px;
@@ -112,8 +115,9 @@
 
 .sliderDots {
   position: absolute;
-  bottom: 40px;
-  right: 80px;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 8px;
   z-index: 10;
@@ -264,7 +268,7 @@
 .sectionHeader {
   text-align: center;
   max-width: 600px;
-  margin: 0 auto 56px auto;
+  margin: 0 auto 28px auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -565,12 +569,21 @@
 
 /* Responsiveness adjustments */
 @media (max-width: 992px) {
+  .hero {
+    min-height: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+  }
   .heroGrid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
   .heroSlider {
     height: 100%;
+  }
+  .slideImage {
+    object-fit: cover;
   }
   .slideCaption {
     position: absolute;
@@ -616,15 +629,41 @@
 }
 
 @media (max-width: 576px) {
+  .hero {
+    min-height: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+  }
   .heroSlider {
     height: 100%;
   }
   .slideCaption {
-    display: none;
+    bottom: 30px;
+    right: 20px;
+    left: 20px;
+    text-align: center;
+    max-width: none;
+    background: rgba(33, 37, 33, 0.5);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: var(--radius-md);
+  }
+  .slideCaption h3 {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+    text-shadow: none;
+  }
+  .slideCaption p {
+    font-size: 0.75rem;
+    text-shadow: none;
   }
   .sliderDots {
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    gap: 6px;
   }
   .heroTitle {
     font-size: 2.3rem;
@@ -655,29 +694,45 @@
 /* Featured Products Section */
 .featuredSection {
   background-color: var(--neutral-bg);
+  padding: 48px 0 !important;
+}
+
+.featuredSection :global(.container) {
+  max-width: 1750px;
+  width: 95%;
 }
 
 .featuredGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  display: flex;
+  overflow-x: auto;
+  gap: 24px;
   margin-bottom: 24px;
+  padding: 12px 4px 24px 4px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.featuredGrid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 @media (max-width: 992px) {
-  .featuredGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
+  /* removed vertical grid override */
 }
 
 @media (max-width: 576px) {
-  .featuredGrid {
-    grid-template-columns: 1fr;
+  .productCard {
+    flex: 0 0 280px !important;
+  }
+  .exploreMoreCard {
+    flex: 0 0 280px !important;
   }
 }
 
 .productCard {
+  flex: 0 0 350px;
   background-color: white;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -686,6 +741,77 @@
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+}
+
+.exploreMoreCard {
+  background-color: var(--primary-light);
+  border: 2px dashed var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  flex: 0 0 350px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.exploreMoreCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-hover);
+}
+
+.exploreMoreLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  color: var(--primary) !important;
+  text-decoration: none;
+}
+
+.exploreMoreIcon {
+  color: var(--primary);
+  opacity: 0.85;
+}
+
+.exploreMoreCard h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary);
+}
+
+.exploreMoreCard span {
+  font-size: 0.88rem;
+  opacity: 0.8;
+  color: var(--foreground);
+}
+
+.exploreMoreBtn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.exploreMoreBtn:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(46, 90, 39, 0.2);
 }
 
 .productCard:hover {
@@ -827,6 +953,12 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
+  animation: fadeInOverlay 0.3s ease-out forwards;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .contactModal {
@@ -1055,7 +1187,7 @@
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
@@ -1099,5 +1231,249 @@
 .enquireBtn:hover {
   background-color: var(--primary-light);
   color: var(--primary);
+}
+
+/* Carousel Container and Floating Nav */
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.scrollBtn {
+  position: absolute;
+  top: calc(50% - 30px);
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: white;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 12px rgba(46, 90, 39, 0.08);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1.8rem;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.scrollBtn:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.scrollLeft {
+  left: -22px;
+}
+
+.scrollRight {
+  right: -22px;
+}
+
+@media (max-width: 768px) {
+  .scrollBtn {
+    display: none;
+  }
+}
+
+/* Clean Borderless Product Cards */
+.productCardClean {
+  flex: 0 0 calc((100% - 72px) / 4); /* Show 4 visible cards at a time on desktop */
+  min-width: 250px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+}
+
+@media (max-width: 1100px) {
+  .productCardClean {
+    flex: 0 0 calc((100% - 48px) / 3); /* Show 3 visible cards */
+  }
+}
+
+@media (max-width: 768px) {
+  .productCardClean {
+    flex: 0 0 calc((100% - 24px) / 2); /* Show 2 visible cards */
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .productCardClean {
+    flex: 0 0 75%; /* Show 1.3 visible cards to encourage swipe scrolling */
+    min-width: 180px;
+  }
+}
+
+.imageAreaClean {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  background-color: #f7f4ed;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.productCardClean:hover .imageAreaClean {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.productImageClean {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.productCardClean:hover .productImageClean {
+  transform: scale(1.04);
+}
+
+.detailsClean {
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.cardNameClean {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: var(--foreground);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.productCardClean:hover .cardNameClean {
+  color: var(--primary);
+}
+
+.priceClean {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--neutral-dark);
+  opacity: 0.85;
+}
+
+.ratingClean {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.starsClean {
+  color: #fbbf24;
+}
+
+.ratingNumClean {
+  opacity: 0.7;
+}
+
+/* Explore More Card Clean Version */
+.exploreMoreCardClean {
+  background-color: var(--primary-light);
+  border: 2px dashed var(--primary);
+  border-radius: var(--radius-md);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: var(--transition);
+  box-sizing: border-box;
+}
+
+.productCardClean:hover.exploreMoreCardClean {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-hover);
+}
+
+.exploreMoreLinkClean {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  color: var(--primary) !important;
+  text-decoration: none;
+}
+
+.exploreMoreIconClean {
+  color: var(--primary);
+  opacity: 0.85;
+}
+
+.exploreMoreCardClean h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary);
+}
+
+.exploreMoreCardClean span {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  color: var(--foreground);
+  text-align: center;
+}
+
+.exploreMoreBtnClean {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  margin-top: 8px;
+}
+
+.exploreMoreBtnClean:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 10px rgba(46, 90, 39, 0.15);
+}
+
+/* Scroll Reveal Animations */
+.revealSection {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sectionVisible {
+  opacity: 1;
+  transform: translateY(0);
 }
 

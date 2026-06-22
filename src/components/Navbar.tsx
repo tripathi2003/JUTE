@@ -82,11 +82,13 @@ const Navbar: React.FC = () => {
 
             {/* Mobile Menu Icon */}
             <button
-              className={styles.menuButton}
+              className={`${styles.menuButton} ${isMobileMenuOpen ? styles.menuButtonActive : ""}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle mobile navigation menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <div className={styles.menuIconContainer}>
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </div>
             </button>
           </div>
         </div>

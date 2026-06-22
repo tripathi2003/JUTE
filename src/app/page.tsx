@@ -27,21 +27,25 @@ const HERO_IMAGES = [
     src: "/collection_traditional.png",
     title: "Premium Artisanal Art",
     desc: "Hand-painted carry bags showcasing traditional Indian folk art.",
+    bgColor: "#877247",
   },
   {
     src: "/collection_modern.png",
     title: "Modern Screen-Printed Totes",
     desc: "Chic, minimal golden and ocean blue totes for daily commutes.",
+    bgColor: "#fafbfa",
   },
   {
     src: "/collection_utility.png",
     title: "Utility Bottle Bags & Planters",
     desc: "Cozy home decor, braided baskets, and raw utility wraps.",
+    bgColor: "#848f7f",
   },
   {
     src: "/jute_bags.png",
     title: "Eco-Friendly Classic Carry Bags",
     desc: "High-density golden jute totes built for strength and daily use.",
+    bgColor: "#af8d71",
   },
 ];
 
@@ -96,6 +100,19 @@ export default function Home() {
   const [filter, setFilter] = React.useState("All");
   const [activeImage, setActiveImage] = React.useState<string | null>(null);
 
+  const artisanalScrollRef = React.useRef<HTMLDivElement>(null);
+  const curingScrollRef = React.useRef<HTMLDivElement>(null);
+
+  const scroll = (ref: React.RefObject<HTMLDivElement | null>, direction: "left" | "right") => {
+    if (ref.current) {
+      const { scrollLeft, clientWidth } = ref.current;
+      const scrollTo = direction === "left"
+        ? scrollLeft - clientWidth * 0.75
+        : scrollLeft + clientWidth * 0.75;
+      ref.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
+
   React.useEffect(() => {
     if (enquiryProduct) {
       setActiveImage(enquiryProduct.images?.[0] || enquiryProduct.image);
@@ -116,6 +133,25 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.sectionVisible);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    const elements = document.querySelectorAll(`.${styles.revealSection}`);
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div>
       <div className="animate-fade-in">
@@ -129,7 +165,7 @@ export default function Home() {
                   key={img.src}
                   className={`${styles.slide} ${currentSlide === index ? styles.activeSlide : ""}`}
                 >
-                  <div className={styles.slideImageContainer}>
+                  <div className={styles.slideImageContainer} style={{ backgroundColor: img.bgColor }}>
                     <img src={img.src} alt={img.title} className={styles.slideImage} />
                   </div>
                   <div className={styles.slideCaption}>
@@ -162,7 +198,7 @@ export default function Home() {
 
         {/* 2. Stats Showcase */}
         {/* Featured Products Section */}
-        <section className={`${styles.featuredSection} section-padding`}>
+        <section className={`${styles.featuredSection} ${styles.revealSection} section-padding`}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <span className={styles.subtitle}>Bestsellers</span>
@@ -174,7 +210,7 @@ export default function Home() {
 
             {/* Filter Tabs */}
             <div className={styles.homeFilterTabs}>
-              {["All", "Bags & Totes", "Rugs & Mats", "Baskets & Storage"].map((cat) => (
+              {["All", "Tote Bags", "Shopping Bags", "Lunch & Bottle Bags", "Gift Bags"].map((cat) => (
                 <button
                   key={cat}
                   className={`${styles.homeFilterTab} ${filter === cat ? styles.activeHomeFilterTab : ""}`}
@@ -185,42 +221,67 @@ export default function Home() {
               ))}
             </div>
 
-            <div className={styles.featuredGrid}>
-              {filteredProducts.map((product) => (
-                <div key={product.id} className={styles.productCard}>
-                  <div className={styles.imageArea} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  </div>
-                  <div className={styles.details}>
-                    <span className={styles.cardCategory}>{product.category}</span>
-                    <h3 className={styles.cardName} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>{product.name}</h3>
-                    <div className={styles.rating}>
-                      <span className={styles.stars}>
-                        {"★".repeat(Math.floor(product.rating))}
-                        {product.rating % 1 !== 0 ? "½" : ""}
-                      </span>
-                      <span>
-                        {product.rating} ({product.reviews})
-                      </span>
+            <div className={styles.carouselWrapper}>
+              <button 
+                className={`${styles.scrollBtn} ${styles.scrollLeft}`} 
+                onClick={() => scroll(artisanalScrollRef, "left")}
+                aria-label="Scroll left"
+              >
+                &#8249;
+              </button>
+              
+              <div className={styles.featuredGrid} ref={artisanalScrollRef}>
+                {filteredProducts.slice(0, 6).map((product) => (
+                  <div 
+                    key={product.id} 
+                    className={styles.productCardClean} 
+                    onClick={() => setEnquiryProduct(product)}
+                  >
+                    <div className={styles.imageAreaClean}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className={styles.productImageClean}
+                      />
                     </div>
-                    <div className={styles.priceRow}>
-                      <span className={styles.price}>
-                        ₹{product.price.toLocaleString("en-IN")}
+                    <div className={styles.detailsClean}>
+                      <h3 className={styles.cardNameClean}>{product.name}</h3>
+                      <span className={styles.priceClean}>
+                        Rs. {product.price.toFixed(2)}
                       </span>
-                      <button
-                        className={styles.addBtn}
-                        onClick={() => setEnquiryProduct(product)}
-                      >
-                        <Phone size={14} /> Buy / Enquire
-                      </button>
+                      <div className={styles.ratingClean}>
+                        <span className={styles.starsClean}>
+                          {"★".repeat(Math.floor(product.rating))}
+                          {product.rating % 1 !== 0 ? "½" : ""}
+                        </span>
+                        <span className={styles.ratingNumClean}>
+                          ({product.rating})
+                        </span>
+                      </div>
                     </div>
                   </div>
+                ))}
+                
+                {/* Explore More Card */}
+                <div className={`${styles.productCardClean} ${styles.exploreMoreCardClean}`}>
+                  <Link href="/shop" className={styles.exploreMoreLinkClean}>
+                    <ShoppingBag size={36} className={styles.exploreMoreIconClean} />
+                    <h3>View All Products</h3>
+                    <span>Browse complete catalog</span>
+                    <button className={styles.exploreMoreBtnClean}>
+                      Go to Shop <ArrowRight size={14} />
+                    </button>
+                  </Link>
                 </div>
-              ))}
+              </div>
+
+              <button 
+                className={`${styles.scrollBtn} ${styles.scrollRight}`} 
+                onClick={() => scroll(artisanalScrollRef, "right")}
+                aria-label="Scroll right"
+              >
+                &#8250;
+              </button>
             </div>
 
             <div className={styles.centerContainer}>
@@ -232,7 +293,7 @@ export default function Home() {
         </section>
 
         {/* Featured Curing & Raw Materials Section */}
-        <section className={`${styles.featuredSection} section-padding`} style={{ borderTop: "1px solid var(--border-light)", backgroundColor: "var(--background)" }}>
+        <section className={`${styles.featuredSection} ${styles.revealSection} section-padding`} style={{ borderTop: "1px solid var(--border-light)", backgroundColor: "var(--background)" }}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <span className={styles.subtitle}>Industrial Grade</span>
@@ -242,41 +303,66 @@ export default function Home() {
               </p>
             </div>
 
-            <div className={styles.featuredGrid}>
-              {FEATURED_CURING_PRODUCTS.map((product) => (
-                <div key={product.id} className={styles.productCard}>
-                  <div className={styles.imageArea} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  </div>
-                  <div className={styles.details}>
-                    <span className={styles.cardCategory}>{product.category}</span>
-                    <h3 className={styles.cardName} onClick={() => setEnquiryProduct(product)} style={{ cursor: "pointer" }}>{product.name}</h3>
-                    <div className={styles.rating}>
-                      <span className={styles.stars}>
-                        {"★".repeat(Math.floor(product.rating))}
-                      </span>
-                      <span>
-                        {product.rating} ({product.reviews})
-                      </span>
+            <div className={styles.carouselWrapper}>
+              <button 
+                className={`${styles.scrollBtn} ${styles.scrollLeft}`} 
+                onClick={() => scroll(curingScrollRef, "left")}
+                aria-label="Scroll left"
+              >
+                &#8249;
+              </button>
+
+              <div className={styles.featuredGrid} ref={curingScrollRef}>
+                {FEATURED_CURING_PRODUCTS.map((product) => (
+                  <div 
+                    key={product.id} 
+                    className={styles.productCardClean} 
+                    onClick={() => setEnquiryProduct(product)}
+                  >
+                    <div className={styles.imageAreaClean}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className={styles.productImageClean}
+                      />
                     </div>
-                    <div className={styles.priceRow}>
-                      <span className={styles.price}>
-                        ₹{product.price.toLocaleString("en-IN")}
+                    <div className={styles.detailsClean}>
+                      <h3 className={styles.cardNameClean}>{product.name}</h3>
+                      <span className={styles.priceClean}>
+                        Rs. {product.price.toFixed(2)}
                       </span>
-                      <button
-                        className={styles.addBtn}
-                        onClick={() => setEnquiryProduct(product)}
-                      >
-                        <Phone size={14} /> Buy / Enquire
-                      </button>
+                      <div className={styles.ratingClean}>
+                        <span className={styles.starsClean}>
+                          {"★".repeat(Math.floor(product.rating))}
+                        </span>
+                        <span className={styles.ratingNumClean}>
+                          ({product.rating})
+                        </span>
+                      </div>
                     </div>
                   </div>
+                ))}
+
+                {/* Explore More Card for Curing */}
+                <div className={`${styles.productCardClean} ${styles.exploreMoreCardClean}`}>
+                  <Link href="/curing" className={styles.exploreMoreLinkClean}>
+                    <Package size={36} className={styles.exploreMoreIconClean} />
+                    <h3>View All Curing</h3>
+                    <span>Explore industrial wraps & rolls</span>
+                    <button className={styles.exploreMoreBtnClean}>
+                      Go to Curing <ArrowRight size={14} />
+                    </button>
+                  </Link>
                 </div>
-              ))}
+              </div>
+
+              <button 
+                className={`${styles.scrollBtn} ${styles.scrollRight}`} 
+                onClick={() => scroll(curingScrollRef, "right")}
+                aria-label="Scroll right"
+              >
+                &#8250;
+              </button>
             </div>
 
             <div className={styles.centerContainer}>
@@ -288,7 +374,7 @@ export default function Home() {
         </section>
 
         {/* 2. Stats Showcase */}
-        <section className={styles.statsContainer}>
+        <section className={`${styles.statsContainer} ${styles.revealSection}`}>
           <div className="container">
             <div className={styles.statsGrid}>
               <div className={styles.statItem}>
@@ -316,7 +402,7 @@ export default function Home() {
         </section>
 
         {/* 3. The Jute Story / Benefits */}
-        <section id="story" className={`${styles.storySection} section-padding`}>
+        <section id="story" className={`${styles.storySection} ${styles.revealSection} section-padding`}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <span className={styles.subtitle}>Eco-Conscious Choice</span>
@@ -364,7 +450,7 @@ export default function Home() {
         </section>
 
         {/* 4. Use Cases - Where is Jute Used? */}
-        <section id="uses" className={`${styles.usesSection} section-padding`}>
+        <section id="uses" className={`${styles.usesSection} ${styles.revealSection} section-padding`}>
           <div className="container">
             <div className={styles.sectionHeader}>
               <span className={styles.subtitle}>Endless Possibilities</span>
@@ -410,7 +496,7 @@ export default function Home() {
                   <img
                     src={activeImage || enquiryProduct.image}
                     alt={enquiryProduct.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
                   />
                 </div>
                 {enquiryProduct.images && enquiryProduct.images.length > 1 && (
@@ -426,7 +512,7 @@ export default function Home() {
                         <img
                           src={imgUrl}
                           alt={`${enquiryProduct.name} thumbnail`}
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }}
                         />
                       </button>
                     ))}

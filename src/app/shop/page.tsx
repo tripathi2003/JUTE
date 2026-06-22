@@ -161,7 +161,7 @@ export default function Shop() {
                           <img
                             src={product.image}
                             alt={product.name}
-                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }}
                           />
                         </div>
                         <div className={styles.details}>
@@ -221,7 +221,7 @@ export default function Shop() {
                   <img
                     src={activeImage || selectedProduct.image}
                     alt={selectedProduct.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
                   />
                 </div>
                 {selectedProduct.images && selectedProduct.images.length > 1 && (
@@ -237,7 +237,7 @@ export default function Shop() {
                         <img
                           src={imgUrl}
                           alt={`${selectedProduct.name} thumbnail`}
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }}
                         />
                       </button>
                     ))}
@@ -257,6 +257,7 @@ export default function Shop() {
                     {selectedProduct.rating} ({selectedProduct.reviews} Verified Buyer Reviews)
                   </span>
                 </div>
+
                 <p className={styles.modalDesc}>{selectedProduct.description}</p>
 
                 {/* Specs */}

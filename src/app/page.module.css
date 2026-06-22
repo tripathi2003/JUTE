@@ -632,7 +632,7 @@
   .hero {
     min-height: auto;
     height: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 4;
     padding: 0;
   }
   .heroSlider {
@@ -644,19 +644,18 @@
     left: 20px;
     text-align: center;
     max-width: none;
-    background: rgba(33, 37, 33, 0.5);
-    backdrop-filter: blur(6px);
+    background: rgba(33, 37, 33, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px;
     border-radius: var(--radius-md);
   }
   .slideCaption h3 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     margin-bottom: 2px;
     text-shadow: none;
   }
   .slideCaption p {
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     text-shadow: none;
   }
   .sliderDots {

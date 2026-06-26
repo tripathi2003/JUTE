@@ -36,30 +36,66 @@ import styles from "./page.module.css";
 
 import { PRODUCTS as ALL_PRODUCTS, FEATURED_CURING_PRODUCTS, type Product } from "../data/products";
 
-const HERO_IMAGES = [
+const HERO_SLIDES = [
   {
-    src: "/hero_banner_1.png",
+    src: "/collection_traditional.png",
     tag: "New Collection",
     title: "Jute Reimagined",
     subtitle: "Artisanal Carry Bags",
     desc: "Hand-painted bags showcasing vibrant Indian folk art. Direct from West Bengal artisans.",
-    bgPosition: "center 20%",
+    panelBg: "linear-gradient(135deg, #5c3a1e 0%, #7a4f2a 40%, #9c6b3c 100%)",
+    leftBg: "#6b4423",
+    accentColor: "#fde68a",
   },
   {
-    src: "/hero_banner_2.png",
+    src: "/jute_bags.png",
     tag: "Eco Friendly",
     title: "Golden Fiber",
     subtitle: "Premium Tote Bags",
     desc: "100% organic jute totes — strong, sustainable, and beautifully crafted for everyday life.",
-    bgPosition: "center 20%",
+    panelBg: "linear-gradient(135deg, #1a3d1a 0%, #2e5a27 40%, #3d7a33 100%)",
+    leftBg: "#1f4a1f",
+    accentColor: "#86efac",
   },
   {
-    src: "/hero_banner_3.png",
+    src: "/madhubani_jute_bag.png",
     tag: "Gift Special",
     title: "Gifting Made",
     subtitle: "Beautiful & Eco",
     desc: "Elegant jute gift bags with Madhubani art. Perfect for weddings, festivals & corporate gifting.",
-    bgPosition: "center 20%",
+    panelBg: "linear-gradient(135deg, #4a1530 0%, #7a2040 40%, #9c2d52 100%)",
+    leftBg: "#5a1a38",
+    accentColor: "#fda4af",
+  },
+  {
+    src: "/pichwai_jute_bag.png",
+    tag: "Handcrafted Art",
+    title: "Pichwai Elegance",
+    subtitle: "Folk Art on Jute",
+    desc: "Traditional Pichwai cow & calf painting on premium jute. A piece of Rajasthan in every bag.",
+    panelBg: "linear-gradient(135deg, #1a2a4a 0%, #1e3a6e 40%, #2952a0 100%)",
+    leftBg: "#1c2f52",
+    accentColor: "#93c5fd",
+  },
+  {
+    src: "/floral_jute_bag.png",
+    tag: "Trending Now",
+    title: "Floral Blooms",
+    subtitle: "Vibrant & Stylish",
+    desc: "Stunning white jute bag with vibrant hand-printed floral bouquet. Perfect for every occasion.",
+    panelBg: "linear-gradient(135deg, #4a1a3a 0%, #7a2060 40%, #a03078 100%)",
+    leftBg: "#551a42",
+    accentColor: "#f9a8d4",
+  },
+  {
+    src: "/artistic_printed_jute_bags.png",
+    tag: "Best Value",
+    title: "Art Collections",
+    subtitle: "Sets of 4 Bags",
+    desc: "Gorgeous printed canvas jute bags — Horse, Book, Floral & Bicycle. Set of 4 at unbeatable price.",
+    panelBg: "linear-gradient(135deg, #1a2a2a 0%, #1e4a4a 40%, #226666 100%)",
+    leftBg: "#1a3030",
+    accentColor: "#67e8f9",
   },
 ];
 
@@ -329,7 +365,7 @@ export default function Home() {
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -369,53 +405,88 @@ export default function Home() {
   return (
     <div>
       <div className="animate-fade-in">
-        {/* 1. Hero Section */}
-        <section className={styles.hero}>
-          <div className={styles.heroSlider}>
-            <div className={styles.sliderWrapper}>
-              {HERO_IMAGES.map((img, index) => (
-                <div
-                  key={img.src}
-                  className={`${styles.slide} ${currentSlide === index ? styles.activeSlide : ""}`}
-                >
-                  <div className={styles.slideImageContainer}>
-                    <img
-                      src={img.src}
-                      alt={img.title}
-                      className={styles.slideImage}
-                      style={{ objectPosition: img.bgPosition || "center 20%" }}
+        {/* 1. Hero Section — Split Layout */}
+        <section className={styles.heroBannerSection}>
+          {HERO_SLIDES.map((slide, index) => (
+            <div
+              key={slide.src}
+              className={`${styles.heroBannerSlide} ${currentSlide === index ? styles.activeBannerSlide : ""}`}
+            >
+              {/* LEFT: Image Panel */}
+              <div
+                className={styles.heroBannerLeft}
+                style={{ backgroundColor: slide.leftBg }}
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.title}
+                  className={styles.heroBannerImg}
+                />
+                {/* Mobile-only dots — shows on image when right panel hidden */}
+                <div className={styles.mobileHeroDots}>
+                  {HERO_SLIDES.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentSlide(i)}
+                      className={`${styles.heroBannerDot} ${currentSlide === i ? styles.activeHeroDot : ""}`}
+                      aria-label={`Go to slide ${i + 1}`}
                     />
-                  </div>
-                  {/* Banner Text Panel — Right Side */}
-                  <div className={styles.heroBannerPanel}>
-                    <span className={styles.heroBannerTag}>{img.tag}</span>
-                    <h1 className={styles.heroBannerTitle}>{img.title}</h1>
-                    <p className={styles.heroBannerSubtitle}>{img.subtitle}</p>
-                    <p className={styles.heroBannerDesc}>{img.desc}</p>
-                    <Link href="/shop" className={styles.heroBannerBtn}>
-                      Shop Collection →
-                    </Link>
-                    <div className={styles.heroBannerBadges}>
-                      <div className={styles.heroBadge}><Leaf size={14}/> Eco Friendly</div>
-                      <div className={styles.heroBadge}><Shield size={14}/> GOTS Certified</div>
-                      <div className={styles.heroBadge}><Award size={14}/> 25+ Yrs Trust</div>
-                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT: Text Panel — pure CSS, no image */}
+              <div
+                className={styles.heroBannerRight}
+                style={{ background: slide.panelBg }}
+              >
+                {/* Decorative mandala SVG */}
+                <svg className={styles.mandalaBg} viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="200" cy="200" r="190" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
+                  <circle cx="200" cy="200" r="150" stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
+                  <circle cx="200" cy="200" r="110" stroke="rgba(255,255,255,0.04)" strokeWidth="1"/>
+                  {[0,30,60,90,120,150,180,210,240,270,300,330].map(a => (
+                    <line key={a} x1="200" y1="10" x2="200" y2="390"
+                      transform={`rotate(${a} 200 200)`}
+                      stroke="rgba(255,255,255,0.03)" strokeWidth="1"/>
+                  ))}
+                </svg>
+
+                <div className={styles.heroBannerContent}>
+                  <span className={styles.heroBannerTag2}
+                    style={{ color: slide.accentColor, borderColor: slide.accentColor }}>
+                    ✦ {slide.tag}
+                  </span>
+                  <h2 className={styles.heroBannerHeading}>{slide.title}</h2>
+                  <p className={styles.heroBannerItalic}
+                    style={{ color: slide.accentColor }}>
+                    {slide.subtitle}
+                  </p>
+                  <p className={styles.heroBannerText}>{slide.desc}</p>
+                  <Link href="/shop" className={styles.heroBannerShopBtn}>
+                    Shop Collection <ArrowRight size={16} />
+                  </Link>
+                  <div className={styles.heroBannerTrustRow}>
+                    <div className={styles.heroBannerTrustItem}><Leaf size={13}/> Eco Friendly</div>
+                    <div className={styles.heroBannerTrustItem}><Shield size={13}/> GOTS Certified</div>
+                    <div className={styles.heroBannerTrustItem}><Award size={13}/> 25+ Yrs</div>
                   </div>
                 </div>
-              ))}
-            </div>
 
-            <div className={styles.sliderDots}>
-              {HERO_IMAGES.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`${styles.dot} ${currentSlide === index ? styles.activeDot : ""}`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+                {/* Slide dots inside right panel */}
+                <div className={styles.heroBannerDots}>
+                  {HERO_SLIDES.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentSlide(i)}
+                      className={`${styles.heroBannerDot} ${currentSlide === i ? styles.activeHeroDot : ""}`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </section>
 
         {/* 2. Featured Products Section */}

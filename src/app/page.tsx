@@ -38,28 +38,28 @@ import { PRODUCTS as ALL_PRODUCTS, FEATURED_CURING_PRODUCTS, type Product } from
 
 const HERO_IMAGES = [
   {
-    src: "/collection_traditional.png",
-    title: "Premium Artisanal Art",
-    desc: "Hand-painted carry bags showcasing traditional Indian folk art.",
-    bgColor: "#877247",
+    src: "/hero_banner_1.png",
+    tag: "New Collection",
+    title: "Jute Reimagined",
+    subtitle: "Artisanal Carry Bags",
+    desc: "Hand-painted bags showcasing vibrant Indian folk art. Direct from West Bengal artisans.",
+    bgPosition: "center 20%",
   },
   {
-    src: "/collection_modern.png",
-    title: "Modern Screen-Printed Totes",
-    desc: "Chic, minimal golden and ocean blue totes for daily commutes.",
-    bgColor: "#fafbfa",
+    src: "/hero_banner_2.png",
+    tag: "Eco Friendly",
+    title: "Golden Fiber",
+    subtitle: "Premium Tote Bags",
+    desc: "100% organic jute totes — strong, sustainable, and beautifully crafted for everyday life.",
+    bgPosition: "center 20%",
   },
   {
-    src: "/collection_utility.png",
-    title: "Utility Bottle Bags & Planters",
-    desc: "Cozy home decor, braided baskets, and raw utility wraps.",
-    bgColor: "#848f7f",
-  },
-  {
-    src: "/jute_bags.png",
-    title: "Eco-Friendly Classic Carry Bags",
-    desc: "High-density golden jute totes built for strength and daily use.",
-    bgColor: "#af8d71",
+    src: "/hero_banner_3.png",
+    tag: "Gift Special",
+    title: "Gifting Made",
+    subtitle: "Beautiful & Eco",
+    desc: "Elegant jute gift bags with Madhubani art. Perfect for weddings, festivals & corporate gifting.",
+    bgPosition: "center 20%",
   },
 ];
 
@@ -281,6 +281,22 @@ export default function Home() {
   const artisanalScrollRef = React.useRef<HTMLDivElement>(null);
   const curingScrollRef = React.useRef<HTMLDivElement>(null);
   const statsRef = React.useRef<HTMLDivElement>(null);
+  const testimonialTouchStartX = React.useRef<number>(0);
+
+  const handleTestimonialTouchStart = (e: React.TouchEvent) => {
+    testimonialTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTestimonialTouchEnd = (e: React.TouchEvent) => {
+    const diff = testimonialTouchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        setTestimonialIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+      } else {
+        setTestimonialIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+      }
+    }
+  };
 
   // Counters
   const counter1 = useCountUp(500, 2000, statsVisible);
@@ -362,12 +378,28 @@ export default function Home() {
                   key={img.src}
                   className={`${styles.slide} ${currentSlide === index ? styles.activeSlide : ""}`}
                 >
-                  <div className={styles.slideImageContainer} style={{ backgroundColor: img.bgColor }}>
-                    <img src={img.src} alt={img.title} className={styles.slideImage} />
+                  <div className={styles.slideImageContainer}>
+                    <img
+                      src={img.src}
+                      alt={img.title}
+                      className={styles.slideImage}
+                      style={{ objectPosition: img.bgPosition || "center 20%" }}
+                    />
                   </div>
-                  <div className={styles.slideCaption}>
-                    <h3>{img.title}</h3>
-                    <p>{img.desc}</p>
+                  {/* Banner Text Panel — Right Side */}
+                  <div className={styles.heroBannerPanel}>
+                    <span className={styles.heroBannerTag}>{img.tag}</span>
+                    <h1 className={styles.heroBannerTitle}>{img.title}</h1>
+                    <p className={styles.heroBannerSubtitle}>{img.subtitle}</p>
+                    <p className={styles.heroBannerDesc}>{img.desc}</p>
+                    <Link href="/shop" className={styles.heroBannerBtn}>
+                      Shop Collection →
+                    </Link>
+                    <div className={styles.heroBannerBadges}>
+                      <div className={styles.heroBadge}><Leaf size={14}/> Eco Friendly</div>
+                      <div className={styles.heroBadge}><Shield size={14}/> GOTS Certified</div>
+                      <div className={styles.heroBadge}><Award size={14}/> 25+ Yrs Trust</div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -382,13 +414,6 @@ export default function Home() {
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
-            </div>
-          </div>
-
-          <div className="container" style={{ position: "relative", zIndex: 10 }}>
-            <div className={styles.heroGrid}>
-              <div className={styles.heroContent}>
-              </div>
             </div>
           </div>
         </section>
@@ -729,11 +754,15 @@ export default function Home() {
                 <ChevronLeft size={22} />
               </button>
 
-              <div className={styles.testimonialsTrack}>
+              <div
+                className={styles.testimonialsTrack}
+                onTouchStart={handleTestimonialTouchStart}
+                onTouchEnd={handleTestimonialTouchEnd}
+              >
                 {TESTIMONIALS.map((t, i) => (
                   <div
                     key={t.id}
-                    className={`${styles.testimonialCard} ${i === testimonialIndex ? styles.activeTestimonial : i === (testimonialIndex - 1 + TESTIMONIALS.length) % TESTIMONIALS.length ? styles.prevTestimonial : i === (testimonialIndex + 1) % TESTIMONIALS.length ? styles.nextTestimonial : styles.hiddenTestimonial}`}
+                    className={`${styles.testimonialCard} ${i === testimonialIndex ? `${styles.activeTestimonial} ${styles.mobileActiveCard}` : i === (testimonialIndex - 1 + TESTIMONIALS.length) % TESTIMONIALS.length ? styles.prevTestimonial : i === (testimonialIndex + 1) % TESTIMONIALS.length ? styles.nextTestimonial : styles.hiddenTestimonial}`}
                   >
                     <div className={styles.testimonialQuoteIcon}>
                       <Quote size={20} />

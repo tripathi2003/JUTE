@@ -15,6 +15,20 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
+    id: "prod-floral-bouquet",
+    name: "Floral Bouquet Jute Tote Bag",
+    price: 499,
+    category: "Tote Bags",
+    rating: 4.9,
+    reviews: 128,
+    image: "/floral_jute_bag.png",
+    images: ["/floral_jute_bag.png"],
+    description: "A stunning white jute tote bag adorned with a vibrant hand-printed floral bouquet featuring pink, blue, yellow, and purple blooms with lush green leaves. Thick white cotton rope handles for comfortable carrying. Perfect for daily errands, gifting, or eco-conscious fashion.",
+    origin: "West Bengal, India",
+    material: "Premium Bleached Jute, Cotton Rope Handles, Natural Dyes",
+    dimensions: "32cm x 32cm x 12cm"
+  },
+  {
     id: "prod-2",
     name: "Classic Artisanal Jute Tote Bag",
     price: 899,

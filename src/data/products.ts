@@ -15,6 +15,20 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
+    id: "prod-rangwala",
+    name: "Rangwala Designer Kurties Jute Tote Bag",
+    price: 499,
+    category: "Tote Bags",
+    rating: 4.9,
+    reviews: 142,
+    image: "/rangwala_jute_bag.png",
+    images: ["/rangwala_jute_bag.png"],
+    description: "An elegant bleached white canvas jute tote bag featuring the designer logo 'Rangwala - A House of Designer Kurties' print. Comes with a convenient front zippered pocket styled with traditional Warli art illustrations. Complete with robust cotton handles and water-resistant interior lining.",
+    origin: "West Bengal, India",
+    material: "Bleached Jute & Cotton Canvas, Traditional Dyes",
+    dimensions: "35cm x 38cm x 12cm"
+  },
+  {
     id: "prod-floral-bouquet",
     name: "Floral Bouquet Jute Tote Bag",
     price: 499,
@@ -31,7 +45,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-2",
     name: "Classic Artisanal Jute Tote Bag",
-    price: 899,
+    price: 499,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 340,
@@ -45,7 +59,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-4",
     name: "Pichwai Cow & Calf Jute Shopping Bag",
-    price: 599,
+    price: 499,
     category: "Shopping Bags",
     rating: 4.8,
     reviews: 156,
@@ -59,7 +73,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-5",
     name: "Under The Sea Jute Tote Bag",
-    price: 399,
+    price: 499,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 242,
@@ -87,7 +101,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-7",
     name: "Water is our best friend jute bottle bag",
-    price: 299,
+    price: 499,
     category: "Lunch & Bottle Bags",
     rating: 4.8,
     reviews: 96,
@@ -101,7 +115,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-8",
     name: "Premium Yellow Heart Jute Tote Bag",
-    price: 500,
+    price: 499,
     category: "Tote Bags",
     rating: 4.8,
     reviews: 112,
@@ -115,7 +129,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-9",
     name: "Lace-Trim Jute Bags with Window (Set of 4)",
-    price: 500,
+    price: 499,
     category: "Gift Bags",
     rating: 4.7,
     reviews: 88,
@@ -129,7 +143,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-10",
     name: "Artistic Printed Jute Tote Bags (Set of 4)",
-    price: 500,
+    price: 499,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 145,
@@ -143,7 +157,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-11",
     name: "Colorful Heart-Pattern Jute Gift Bags (Set of 4)",
-    price: 500,
+    price: 499,
     category: "Gift Bags",
     rating: 4.6,
     reviews: 76,
@@ -157,7 +171,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-12",
     name: "Promo Custom Jute Tote Bag",
-    price: 500,
+    price: 499,
     category: "Tote Bags",
     rating: 4.8,
     reviews: 94,
@@ -171,7 +185,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-13",
     name: "Premium Diamond-Pattern Jute Tote Bag",
-    price: 500,
+    price: 499,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 108,
@@ -185,7 +199,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-14",
     name: "Hamburg Landmark Sketch Jute Shopping Bag",
-    price: 500,
+    price: 499,
     category: "Shopping Bags",
     rating: 4.7,
     reviews: 82,
@@ -199,7 +213,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-15",
     name: "Kerala Ayurveda International Yoga Day Jute Bag",
-    price: 500,
+    price: 499,
     category: "Shopping Bags",
     rating: 4.8,
     reviews: 64,

@@ -43,6 +43,20 @@ export const PRODUCTS: Product[] = [
     dimensions: "32cm x 32cm x 12cm"
   },
   {
+    id: "prod-vibrant-floral",
+    name: "Vibrant Floral Jute Tote Bag",
+    price: 499,
+    category: "Tote Bags",
+    rating: 4.8,
+    reviews: 92,
+    image: "/floral_print_jute_bag.jpg",
+    images: ["/floral_print_jute_bag.jpg"],
+    description: "A gorgeous, naturally colored jute tote bag featuring a bright screen-printed pattern of pink, blue, and yellow flowers with contrasting centers. Crafted with premium golden jute fibers and comfortable matching webbed handles. Features a spacious main compartment and laminated water-resistant lining.",
+    origin: "West Bengal, India",
+    material: "100% Organic Golden Jute, Eco-friendly Azo-free Dyes, Soft Handles",
+    dimensions: "35cm x 35cm x 12cm"
+  },
+  {
     id: "prod-2",
     name: "Classic Artisanal Jute Tote Bag",
     price: 499,

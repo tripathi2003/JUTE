@@ -15,6 +15,20 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
+    id: "prod-paris",
+    name: "Paris Eiffel Tower Sketch Jute Tote Bag",
+    price: 499,
+    category: "Tote Bags",
+    rating: 4.8,
+    reviews: 86,
+    image: "/paris_jute_bag.jpg",
+    images: ["/paris_jute_bag.jpg"],
+    description: "A beautifully designed white canvas jute tote bag featuring a vibrant, artistic Paris-themed sketch. The print includes the Eiffel Tower, black cats, cupcakes, roses, red heart balloons, and yellow flowers. Equipped with soft, durable white cotton handles and a spacious interior, it is perfect for everyday use, travel, or gifting.",
+    origin: "West Bengal, India",
+    material: "Premium Bleached Jute & Cotton Canvas, Eco-friendly Print",
+    dimensions: "35cm x 38cm x 12cm"
+  },
+  {
     id: "prod-rangwala",
     name: "Rangwala Designer Kurties Jute Tote Bag",
     price: 499,

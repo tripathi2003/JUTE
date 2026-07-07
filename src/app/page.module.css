@@ -2493,3 +2493,214 @@
   flex-shrink: 0;
 }
 
+/* =========================================================
+   INTERACTIVE ECO CALCULATOR
+   ========================================================= */
+.calculatorSection {
+  background-color: var(--background);
+}
+
+.calculatorCard {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  background: var(--neutral-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 48px;
+  box-shadow: var(--shadow-md);
+  margin-top: 40px;
+}
+
+.calcLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.calcSubheading {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.sliderContainer {
+  background: var(--background);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.sliderValue {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+.rangeSlider {
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--border);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.rangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  transition: transform 0.1s;
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.rangeSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+.ecoQuote {
+  display: flex;
+  gap: 12px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  background: var(--primary-light);
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  line-height: 1.5;
+}
+
+.ecoQuoteIcon {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.calcRight {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.resultsHeading {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--foreground);
+  opacity: 0.8;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.metricCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--background);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  border: 1px solid var(--border-light);
+  transition: var(--transition);
+}
+
+.metricCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.metricCardIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.metricNum {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: var(--font-sans);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.metricLabel {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  opacity: 0.8;
+  line-height: 1.3;
+}
+
+.carbonBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.carbonBadgeIcon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+@media (max-width: 992px) {
+  .calculatorCard {
+    grid-template-columns: 1fr;
+    padding: 32px;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .calculatorCard {
+    padding: 20px;
+    gap: 24px;
+  }
+}
+

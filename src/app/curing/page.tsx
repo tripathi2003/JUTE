@@ -125,6 +125,41 @@ export default function Curing() {
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const [currentBannerIndex, setCurrentBannerIndex] = useState<number>(0);
 
+  // Estimator State
+  const [slabLength, setSlabLength] = useState<number>(20);
+  const [slabWidth, setSlabWidth] = useState<number>(10);
+  const [slabsCount, setSlabsCount] = useState<number>(1);
+  const [overlap, setOverlap] = useState<number>(10);
+  const [rollType, setRollType] = useState<string>("raw-curing-sheet");
+
+  // Estimator Calculations
+  const selectedRoll = useMemo(() => {
+    if (rollType === "raw-hessian-roll") {
+      return { name: "Premium Burlap Hessian Roll (1.5m x 50m)", area: 75, gsm: 280, price: 2800 };
+    }
+    if (rollType === "raw-sacking-bag") {
+      return { name: "Heavy-Grade Jute Sacking Roll (1.2m x 50m)", area: 60, gsm: 450, price: 3200 };
+    }
+    return { name: "Concrete Curing Jute Sheet (1.2m x 100m)", area: 120, gsm: 350, price: 4500 };
+  }, [rollType]);
+
+  const totalSlabArea = slabLength * slabWidth * slabsCount;
+  const totalAreaWithOverlap = totalSlabArea * (1 + overlap / 100);
+  const rollsNeeded = Math.ceil(totalAreaWithOverlap / selectedRoll.area);
+  const estimatedCost = rollsNeeded * selectedRoll.price;
+  const estimatedWeight = Math.round(rollsNeeded * selectedRoll.area * selectedRoll.gsm / 1000);
+  const estimatedWaterHold = Math.round(estimatedWeight * 1.5);
+
+  const whatsappMessage = `Hi Ashok Enterprises, I estimated my jute curing sheet requirements using your calculator. 
+Slab Dimensions: ${slabLength}m x ${slabWidth}m (Qty: ${slabsCount})
+Overlap Selected: ${overlap}%
+Total Area: ${totalSlabArea} sq m
+Material: ${selectedRoll.name}
+Estimated Rolls: ${rollsNeeded}
+Please provide a bulk quote.`;
+
+  const encodedMessage = encodeURIComponent(whatsappMessage);
+
   const categories = ["All", "Curing Materials", "Hessian Cloth", "Packing Sacks", "Twines"];
 
   const filteredProducts = useMemo(() => {
@@ -289,6 +324,129 @@ export default function Curing() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Jute Roll Estimator Section */}
+        <section className={styles.estimatorSection} style={{ borderTop: "1px solid var(--border-light)", backgroundColor: "#fdfcf9", padding: "80px 0" }}>
+          <div className="container">
+            <div className={styles.catalogHeader}>
+              <span className={styles.badge} style={{ display: "inline-block", margin: "0 auto 12px auto" }}>Project Estimator</span>
+              <h2 className={styles.sectionTitle}>Concrete Curing Jute Estimator</h2>
+              <p className={styles.sectionSubtitle} style={{ maxWidth: "680px", margin: "0 auto" }}>
+                Calculate the number of jute rolls required for curing concrete slabs based on your construction site dimensions.
+              </p>
+            </div>
+
+            <div className={styles.estimatorCard}>
+              <div className={styles.estimatorLeft}>
+                <h3 className={styles.estimatorSubheading}>Enter Slab Dimensions</h3>
+                
+                <div className={styles.inputGroupGrid}>
+                  <div className={styles.inputFieldWrap}>
+                    <label className={styles.inputLabel}>Slab Length (meters)</label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={slabLength}
+                      onChange={(e) => setSlabLength(Math.max(1, parseInt(e.target.value) || 0))}
+                      className={styles.numInput}
+                    />
+                  </div>
+                  <div className={styles.inputFieldWrap}>
+                    <label className={styles.inputLabel}>Slab Width (meters)</label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={slabWidth}
+                      onChange={(e) => setSlabWidth(Math.max(1, parseInt(e.target.value) || 0))}
+                      className={styles.numInput}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.inputGroupGrid} style={{ marginTop: "16px" }}>
+                  <div className={styles.inputFieldWrap}>
+                    <label className={styles.inputLabel}>Number of Slabs / Floors</label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={slabsCount}
+                      onChange={(e) => setSlabsCount(Math.max(1, parseInt(e.target.value) || 0))}
+                      className={styles.numInput}
+                    />
+                  </div>
+                  <div className={styles.inputFieldWrap}>
+                    <label className={styles.inputLabel}>Overlap Allowance (%)</label>
+                    <select
+                      value={overlap}
+                      onChange={(e) => setOverlap(parseInt(e.target.value))}
+                      className={styles.selectInput}
+                    >
+                      <option value={5}>5% (Tight)</option>
+                      <option value={10}>10% (Recommended)</option>
+                      <option value={15}>15% (Generous)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className={styles.inputFieldWrap} style={{ marginTop: "16px" }}>
+                  <label className={styles.inputLabel}>Select Curing Material Weave</label>
+                  <select
+                    value={rollType}
+                    onChange={(e) => setRollType(e.target.value)}
+                    className={styles.selectInput}
+                  >
+                    <option value="raw-curing-sheet">Concrete Curing Jute Sheet (350 GSM — 1.2m x 100m)</option>
+                    <option value="raw-hessian-roll">Premium Burlap Hessian Roll (280 GSM — 1.5m x 50m)</option>
+                    <option value="raw-sacking-bag">Heavy-Grade Jute Sacking Roll (450 GSM — 1.2m x 50m)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styles.estimatorRight}>
+                <h4 className={styles.resultsHeading}>Estimation Summary</h4>
+                
+                <div className={styles.estimateGrid}>
+                  <div className={styles.estimateRow}>
+                    <span className={styles.estimateLabel}>Total Slab Area</span>
+                    <span className={styles.estimateVal}>{totalSlabArea} m²</span>
+                  </div>
+                  <div className={styles.estimateRow}>
+                    <span className={styles.estimateLabel}>Area (inc. Overlap)</span>
+                    <span className={styles.estimateVal}>{Math.round(totalAreaWithOverlap)} m²</span>
+                  </div>
+                  <div className={styles.estimateRow} style={{ borderBottom: "1.5px dashed var(--border)" }}>
+                    <span className={styles.estimateLabel}>Roll Area Size</span>
+                    <span className={styles.estimateVal}>{selectedRoll.area} m² / roll</span>
+                  </div>
+                  <div className={styles.estimateRowHighlight}>
+                    <span className={styles.highlightLabel}>Required Jute Rolls</span>
+                    <span className={styles.highlightVal}>{rollsNeeded} {rollsNeeded === 1 ? 'Roll' : 'Rolls'}</span>
+                  </div>
+                </div>
+
+                <div className={styles.estimateSpecs}>
+                  <div className={styles.specBox}>
+                    <span className={styles.specBoxLabel}>Estimated Jute Weight</span>
+                    <span className={styles.specBoxVal}>{estimatedWeight.toLocaleString("en-IN")} kg</span>
+                  </div>
+                  <div className={styles.specBox}>
+                    <span className={styles.specBoxLabel}>Water Retention Cap.</span>
+                    <span className={styles.specBoxVal}>{estimatedWaterHold.toLocaleString("en-IN")} L</span>
+                  </div>
+                </div>
+
+                <a
+                  href={`https://wa.me/919968648541?text=${encodedMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.estimatorWhatsappBtn}
+                >
+                  <MessageCircle size={18} /> Send Estimate Enquiry on WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </section>

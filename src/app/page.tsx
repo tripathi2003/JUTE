@@ -313,13 +313,6 @@ export default function Home() {
   const [statsVisible, setStatsVisible] = React.useState(false);
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
   const [activeProcessStep, setActiveProcessStep] = React.useState(0);
-  const [bagsPerWeek, setBagsPerWeek] = React.useState(10);
-
-  const annualBagsPrevented = bagsPerWeek * 52;
-  const annualCarbonSaved = parseFloat((annualBagsPrevented * 0.08).toFixed(1));
-  const annualPlasticReduced = parseFloat((annualBagsPrevented * 8 / 1000).toFixed(2));
-  const treesEquivalent = parseFloat((annualCarbonSaved / 22).toFixed(1));
-  const carEmissionsAvoided = parseFloat((annualCarbonSaved / 0.12).toFixed(0));
 
   const artisanalScrollRef = React.useRef<HTMLDivElement>(null);
   const curingScrollRef = React.useRef<HTMLDivElement>(null);
@@ -751,97 +744,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Interactive Eco Calculator Section */}
-        <section className={`${styles.calculatorSection} ${styles.revealSection} section-padding`}>
-          <div className="container">
-            <div className={styles.sectionHeader}>
-              <span className={styles.subtitle}>Eco Impact Calculator</span>
-              <h2 className={styles.sectionTitle}>Calculate Your Plastic Savings</h2>
-              <p className={styles.sectionDesc}>
-                See how much plastic waste and carbon emissions you prevent annually by switching to reusable, biodegradable jute bags.
-              </p>
-            </div>
-            
-            <div className={styles.calculatorCard}>
-              <div className={styles.calcLeft}>
-                <h3 className={styles.calcSubheading}>Your Weekly Plastic Bag Usage</h3>
-                <div className={styles.sliderContainer}>
-                  <div className={styles.sliderHeader}>
-                    <span>Single-use bags:</span>
-                    <span className={styles.sliderValue}>{bagsPerWeek} bags/week</span>
-                  </div>
-                  <input
-                    type="range"
-                    min="1"
-                    max="50"
-                    value={bagsPerWeek}
-                    onChange={(e) => setBagsPerWeek(parseInt(e.target.value))}
-                    className={styles.rangeSlider}
-                  />
-                  <div className={styles.sliderLabels}>
-                    <span>1 bag</span>
-                    <span>25 bags</span>
-                    <span>50 bags</span>
-                  </div>
-                </div>
-                
-                <div className={styles.ecoQuote}>
-                  <Leaf className={styles.ecoQuoteIcon} size={20} style={{ color: "var(--primary)" }} />
-                  <p>
-                    A single jute bag can be reused thousands of times, replacing hundreds of single-use plastic bags that litter oceans and stay in landfills for centuries.
-                  </p>
-                </div>
-              </div>
-
-              <div className={styles.calcRight}>
-                <h4 className={styles.resultsHeading}>Your Annual Green Impact</h4>
-                <div className={styles.metricsGrid}>
-                  <div className={styles.metricCard}>
-                    <div className={styles.metricCardIconWrap} style={{ background: "rgba(46, 90, 39, 0.08)" }}>
-                      <ShoppingBag size={20} style={{ color: "var(--primary)" }} />
-                    </div>
-                    <div>
-                      <span className={styles.metricNum}>{annualBagsPrevented}</span>
-                      <span className={styles.metricLabel}>Bags Prevented</span>
-                    </div>
-                  </div>
-                  <div className={styles.metricCard}>
-                    <div className={styles.metricCardIconWrap} style={{ background: "rgba(184, 90, 56, 0.08)" }}>
-                      <Shield size={20} style={{ color: "var(--accent)" }} />
-                    </div>
-                    <div>
-                      <span className={styles.metricNum}>{annualPlasticReduced} kg</span>
-                      <span className={styles.metricLabel}>Plastic Waste Saved</span>
-                    </div>
-                  </div>
-                  <div className={styles.metricCard}>
-                    <div className={styles.metricCardIconWrap} style={{ background: "rgba(46, 90, 39, 0.08)" }}>
-                      <Leaf size={20} style={{ color: "var(--primary)" }} />
-                    </div>
-                    <div>
-                      <span className={styles.metricNum}>{annualCarbonSaved} kg</span>
-                      <span className={styles.metricLabel}>CO₂ Emissions Avoided</span>
-                    </div>
-                  </div>
-                  <div className={styles.metricCard}>
-                    <div className={styles.metricCardIconWrap} style={{ background: "rgba(184, 90, 56, 0.08)" }}>
-                      <Sprout size={20} style={{ color: "var(--accent)" }} />
-                    </div>
-                    <div>
-                      <span className={styles.metricNum}>{treesEquivalent} trees</span>
-                      <span className={styles.metricLabel}>Daily CO₂ Absorbed</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className={styles.carbonBadge}>
-                  <Globe className={styles.carbonBadgeIcon} size={18} style={{ color: "var(--primary)" }} />
-                  <span>Equivalent to avoiding <strong>{carEmissionsAvoided} km</strong> of car emissions!</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Why Buy From Us — Trust Badges */}
         <section className={`${styles.trustSection} ${styles.revealSection} section-padding`}>

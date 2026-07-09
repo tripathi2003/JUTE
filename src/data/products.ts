@@ -15,6 +15,20 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
+    id: "prod-yrlen-turquoise",
+    name: "Yrlen Premium Turquoise Jute Tote Bag",
+    price: 499,
+    category: "Tote Bags",
+    rating: 4.9,
+    reviews: 110,
+    image: "/blue_handle_tote.jpg",
+    images: ["/blue_handle_tote.jpg"],
+    description: "An elegant, premium natural jute tote bag styled with vibrant turquoise blue handles and borders. Comes with a designer black product tag and a water-resistant interior laminate lining. Extremely spacious, strong, and fashionable for shopping, college, or daily use.",
+    origin: "West Bengal, India",
+    material: "100% Premium Organic Jute, Cotton Padded Handles, Water-Resistant Lining",
+    dimensions: "35cm x 35cm x 12cm"
+  },
+  {
     id: "prod-paris",
     name: "Paris Eiffel Tower Sketch Jute Tote Bag",
     price: 499,

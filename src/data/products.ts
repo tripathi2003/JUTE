@@ -265,6 +265,20 @@ export const PRODUCTS: Product[] = [
     origin: "West Bengal, India",
     material: "100% Organic Jute, Cotton Handles",
     dimensions: "35cm x 35cm x 10cm"
+  },
+  {
+    id: "prod-baddie-hibiscus",
+    name: "Baddie Hibiscus Pink Jute Tote Bag",
+    price: 499,
+    category: "Tote Bags",
+    rating: 4.9,
+    reviews: 72,
+    image: "/baddie_tote_bag.jpg",
+    images: ["/baddie_tote_bag.jpg"],
+    description: "A chic blush-pink jute tote bag featuring a striking hibiscus flower accent and bold 'Baddie' lettering set against a deep teal mandala-patterned panel. The soft pastel canvas paired with vibrant tropical art makes this the perfect statement accessory for fashion-forward, eco-conscious shoppers.",
+    origin: "West Bengal, India",
+    material: "Premium Bleached Jute, Cotton Handles, Eco-friendly Print",
+    dimensions: "35cm x 38cm x 12cm"
   }
 ];
 

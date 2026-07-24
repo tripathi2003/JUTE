@@ -6,20 +6,13 @@ import {
   Leaf,
   ArrowRight,
   Shield,
-  Sprout,
-  Globe,
-  Layers,
   ShoppingBag,
   Package,
-  Wrench,
-  Shirt,
-  Home as HomeIcon,
   Phone,
   X,
   MessageCircle,
   CheckCircle,
   Truck,
-  Star,
   Factory,
   Award,
   Headphones,
@@ -27,10 +20,6 @@ import {
   Quote,
   ChevronLeft,
   ChevronRight,
-  Scissors,
-  FlaskConical,
-  Flame,
-  Zap,
 } from "lucide-react";
 import styles from "./page.module.css";
 
@@ -99,50 +88,7 @@ const HERO_SLIDES = [
   },
 ];
 
-const USE_CASES = [
-  {
-    id: "use-1",
-    title: "Fashion & Carry Bags",
-    desc: "Strong, elegant tote bags, shoppers, and purses designed with beautiful weaves. Replaces thousand single-use plastics.",
-    icon: Shirt,
-    bgImg: "/use_fashion.png",
-  },
-  {
-    id: "use-2",
-    title: "Home Furnishings",
-    desc: "Organic rugs, curtains, laundry hampers, and textured wall hangings that bring a warm, rustic accent to modern homes.",
-    icon: HomeIcon,
-    bgImg: "/use_home.png",
-  },
-  {
-    id: "use-3",
-    title: "Industrial Packaging",
-    desc: "Traditional gunny sacks, twine, and protective padding used globally to store grains, sugar, coffee, and dry cargo.",
-    icon: Package,
-    bgImg: "/use_packaging.png",
-  },
-  {
-    id: "use-4",
-    title: "Civil Geotextiles",
-    desc: "Heavy meshes laid on riverbanks and hillsides to prevent soil erosion while vegetation grows. 100% biodegradable soil binding.",
-    icon: Layers,
-    bgImg: "/use_geotextiles.png",
-  },
-  {
-    id: "use-5",
-    title: "Agriculture Wraps",
-    desc: "Sapling wraps, plant protection tubes, and organic nursery pots that decompose directly in the soil when planted.",
-    icon: Sprout,
-    bgImg: "/use_agriculture.png",
-  },
-  {
-    id: "use-6",
-    title: "Artisanal Crafts",
-    desc: "Intricate braided table mats, braided ropes, baskets, and custom artwork handmade by local farming collectives.",
-    icon: Wrench,
-    bgImg: "/use_crafts.png",
-  },
-];
+
 
 const TESTIMONIALS = [
   {
@@ -235,57 +181,7 @@ const TRUST_BADGES = [
   },
 ];
 
-const PROCESS_STEPS = [
-  {
-    step: "01",
-    icon: Leaf,
-    title: "Raw Jute Harvesting",
-    desc: "Golden jute stalks are hand-harvested from riverbank farms in Assam & West Bengal during peak monsoon season.",
-    image: "/jute_dry.png",
-  },
-  {
-    step: "02",
-    icon: FlaskConical,
-    title: "Retting & Fiber Extraction",
-    desc: "Stalks are soaked in water for 10–30 days to separate long, silky fibers from the woody core — fully natural process.",
-    image: "/jute_rope_making.png",
-  },
-  {
-    step: "03",
-    icon: Scissors,
-    title: "Weaving & Dyeing",
-    desc: "Fibers are spun into yarn, then woven on traditional handlooms or power looms. Natural & vegan dyes are applied.",
-    image: "/jute_stitching.png",
-  },
-  {
-    step: "04",
-    icon: Flame,
-    title: "Artisan Crafting",
-    desc: "Skilled artisans from rural cooperatives hand-stitch, paint, and assemble each product with care and cultural pride.",
-    image: "/jute_placemats.png",
-  },
-  {
-    step: "05",
-    icon: Shield,
-    title: "Quality Testing",
-    desc: "Every batch undergoes load testing, water-resistance checks, and dimensional accuracy tests before dispatch.",
-    image: "/jute_twine.png",
-  },
-  {
-    step: "06",
-    icon: Zap,
-    title: "Packed & Delivered",
-    desc: "Eco-packed in recycled kraft paper, shipped pan-India via trusted logistics partners within 3–5 business days.",
-    image: "/jute_baskets.png",
-  },
-];
 
-const DELIVERY_CITIES = [
-  "Delhi NCR", "Mumbai", "Kolkata", "Bangalore", "Ahmedabad",
-  "Hyderabad", "Chennai", "Pune", "Jaipur", "Lucknow",
-  "Bhopal", "Chandigarh", "Surat", "Kochi", "Indore",
-  "Patna", "Nagpur", "Vadodara", "Coimbatore", "Agra",
-];
 
 // Animated Counter Hook
 function useCountUp(target: number, duration = 2000, start = false) {
@@ -312,7 +208,7 @@ export default function Home() {
   const [activeImage, setActiveImage] = React.useState<string | null>(null);
   const [statsVisible, setStatsVisible] = React.useState(false);
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
-  const [activeProcessStep, setActiveProcessStep] = React.useState(0);
+
 
   const artisanalScrollRef = React.useRef<HTMLDivElement>(null);
   const curingScrollRef = React.useRef<HTMLDivElement>(null);
@@ -702,47 +598,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Why Choose Golden Jute — Eco Benefits */}
-        <section id="story" className={`${styles.storySection} ${styles.revealSection} section-padding`}>
-          <div className="container">
-            <div className={styles.sectionHeader}>
-              <span className={styles.subtitle}>Eco-Conscious Choice</span>
-              <h2 className={styles.sectionTitle}>Why Choose Golden Jute?</h2>
-              <p className={styles.sectionDesc}>
-                Known as the &ldquo;Golden Fiber,&rdquo; jute is one of the strongest, most versatile natural fibers on Earth — a natural champion for our environment.
-              </p>
-            </div>
-            <div className={styles.storyGrid}>
-              <div className={styles.storyCard}>
-                <div className={styles.cardIcon}>
-                  <Sprout size={28} />
-                </div>
-                <h3 className={styles.cardTitle}>Soil Enrichment</h3>
-                <p className={styles.cardText}>
-                  Jute crops rotate wonderfully, returning nutrients to the soil and improving fertility for subsequent crops like paddy and vegetables.
-                </p>
-              </div>
-              <div className={styles.storyCard}>
-                <div className={styles.cardIcon}>
-                  <Shield size={28} />
-                </div>
-                <h3 className={styles.cardTitle}>High Tensile Strength</h3>
-                <p className={styles.cardText}>
-                  The natural woody composition makes jute threads incredibly tough — ideal for heavy packaging, rugs, and structural fibers.
-                </p>
-              </div>
-              <div className={styles.storyCard}>
-                <div className={styles.cardIcon}>
-                  <Globe size={28} />
-                </div>
-                <h3 className={styles.cardTitle}>Carbon Negative</h3>
-                <p className={styles.cardText}>
-                  During its short growth, jute absorbs massive amounts of CO₂ and releases pure oxygen — beating most hardwood forests in green impact.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
 
         {/* Why Buy From Us — Trust Badges */}
@@ -774,37 +629,6 @@ export default function Home() {
 
 
 
-        {/* 8. Use Cases - Where is Jute Used? */}
-        <section id="uses" className={`${styles.usesSection} ${styles.revealSection} section-padding`}>
-          <div className="container">
-            <div className={styles.sectionHeader}>
-              <span className={styles.subtitle}>Endless Possibilities</span>
-              <h2 className={styles.sectionTitle}>Where Jute is Utilized</h2>
-              <p className={styles.sectionDesc}>
-                From simple packaging twine to advanced civil engineering geotextiles, explore the incredible range of applications.
-              </p>
-            </div>
-
-            <div className={styles.usesGrid}>
-              {USE_CASES.map((useCase) => {
-                const IconComponent = useCase.icon;
-                return (
-                  <div key={useCase.id} className={styles.useCard}>
-                    <div
-                      className={styles.useBg}
-                      style={{ backgroundImage: `url(${useCase.bgImg})` }}
-                    />
-                    <div className={styles.useOverlay}>
-                      <IconComponent className={styles.useIcon} size={32} />
-                      <h3 className={styles.useCardTitle}>{useCase.title}</h3>
-                      <p className={styles.useCardDesc}>{useCase.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
         {/* 9. Customer Testimonials */}
         <section className={`${styles.testimonialsSection} ${styles.revealSection} section-padding`}>
@@ -884,30 +708,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 10. We Deliver To — Cities */}
-        <section className={`${styles.deliverySection} ${styles.revealSection} section-padding`}>
-          <div className="container">
-            <div className={styles.sectionHeader}>
-              <span className={styles.subtitle}>Pan-India Reach</span>
-              <h2 className={styles.sectionTitle}>We Deliver Across India</h2>
-              <p className={styles.sectionDesc}>
-                From Kashmir to Kanyakumari — our jute products reach every corner of India. Bulk orders dispatched within 3–5 business days.
-              </p>
-            </div>
-            <div className={styles.citiesGrid}>
-              {DELIVERY_CITIES.map((city, i) => (
-                <div key={i} className={styles.cityBadge}>
-                  <MapPin size={13} className={styles.cityIcon} />
-                  {city}
-                </div>
-              ))}
-              <div className={`${styles.cityBadge} ${styles.moreCity}`}>
-                + 500 more cities
-              </div>
-            </div>
-
-          </div>
-        </section>
 
         {/* 11. Bold CTA WhatsApp Banner */}
         <section className={`${styles.ctaBanner} ${styles.revealSection}`}>

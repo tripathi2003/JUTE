@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import CuringClient from "./CuringClient";
 
-const BASE_URL = "https://ashokenterprises.in";
+const BASE_URL = "https://jute-ashok-enterprises.vercel.app";
 
 export const metadata: Metadata = {
   title: "Jute Curing Sheets, Hessian Cloth & Raw Materials — Bulk Orders",

@@ -3,7 +3,7 @@ import HomeClient from "./HomeClient";
 import { ProductListJsonLd } from "@/components/JsonLd";
 import { PRODUCTS } from "../data/products";
 
-const BASE_URL = "https://ashokenterprises.in";
+const BASE_URL = "https://jute-ashok-enterprises.vercel.app";
 
 export const metadata: Metadata = {
   title: "Buy Premium Jute Bags Online — Eco-Friendly Handcrafted Bags India",

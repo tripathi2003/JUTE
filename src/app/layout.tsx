@@ -9,7 +9,7 @@ import FloatingContact from "@/components/FloatingContact";
 import { CartProvider } from "@/context/CartContext";
 import { OrganizationJsonLd, LocalBusinessJsonLd, WebSiteJsonLd } from "@/components/JsonLd";
 
-const BASE_URL = "https://ashokenterprises.in";
+const BASE_URL = "https://jute-ashok-enterprises.vercel.app";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],

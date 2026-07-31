@@ -27,61 +27,73 @@ import { PRODUCTS as ALL_PRODUCTS, FEATURED_CURING_PRODUCTS, type Product } from
 
 const HERO_SLIDES = [
   {
-    src: "/collection_traditional.png",
-    tag: "New Collection",
-    title: "Jute Reimagined",
-    subtitle: "Artisanal Carry Bags",
-    desc: "Hand-painted bags showcasing vibrant Indian folk art. Direct from West Bengal artisans.",
-    panelBg: "linear-gradient(135deg, #5c3a1e 0%, #7a4f2a 40%, #9c6b3c 100%)",
-    leftBg: "#6b4423",
-    accentColor: "#fde68a",
-  },
-  {
-    src: "/jute_bags.png",
-    tag: "Eco Friendly",
-    title: "Golden Fiber",
+    src: "/jute_bags_sale_banner_desktop.png",
+    desktopSrc: "/jute_bags_sale_banner_desktop.png",
+    mobileSrc: "/jute_bags_sale_banner.png",
+    tag: "MEGA SALE • UP TO 67% OFF",
+    title: "Golden Fiber Sale",
     subtitle: "Premium Tote Bags",
-    desc: "100% organic jute totes — strong, sustainable, and beautifully crafted for everyday life.",
+    desc: "Huge discounts on 100% organic jute totes — strong, sustainable, starting at just ₹99!",
     panelBg: "linear-gradient(135deg, #1a3d1a 0%, #2e5a27 40%, #3d7a33 100%)",
     leftBg: "#1f4a1f",
     accentColor: "#86efac",
   },
   {
-    src: "/madhubani_jute_bag.png",
-    tag: "Gift Special",
-    title: "Gifting Made",
-    subtitle: "Beautiful & Eco",
-    desc: "Elegant jute gift bags with Madhubani art. Perfect for weddings, festivals & corporate gifting.",
+    src: "/pichwai_cow_desktop.png",
+    desktopSrc: "/pichwai_cow_desktop.png",
+    mobileSrc: "/pichwai_cow_mobile.png",
+    tag: "Folk Art Collection",
+    title: "Pichwai Cow & Calf",
+    subtitle: "Handcrafted Heritage Art",
+    desc: "Traditional Pichwai cow painting on 100% organic golden jute. A piece of Indian heritage in every bag.",
+    panelBg: "linear-gradient(135deg, #5c3a1e 0%, #7a4f2a 40%, #9c6b3c 100%)",
+    leftBg: "#6b4423",
+    accentColor: "#fde68a",
+  },
+  {
+    src: "/baddie_hibiscus_desktop.png",
+    desktopSrc: "/baddie_hibiscus_desktop.png",
+    mobileSrc: "/baddie_hibiscus_mobile.png",
+    tag: "Baddie Collection",
+    title: "Hibiscus Pink Tote",
+    subtitle: "Vibrant Tropical Style",
+    desc: "Chic blush-pink canvas jute tote with bold tropical hibiscus art & soft cotton handles.",
     panelBg: "linear-gradient(135deg, #4a1530 0%, #7a2040 40%, #9c2d52 100%)",
     leftBg: "#5a1a38",
     accentColor: "#fda4af",
   },
   {
-    src: "/pichwai_jute_bag.png",
-    tag: "Handcrafted Art",
-    title: "Pichwai Elegance",
-    subtitle: "Folk Art on Jute",
-    desc: "Traditional Pichwai cow & calf painting on premium jute. A piece of Rajasthan in every bag.",
+    src: "/hamburg_sketch_desktop.png",
+    desktopSrc: "/hamburg_sketch_desktop.png",
+    mobileSrc: "/hamburg_sketch_mobile.png",
+    tag: "City Edition",
+    title: "Hamburg Landmark",
+    subtitle: "Architectural Sketch Art",
+    desc: "Unbleached raw golden jute shopping bag featuring hand-drawn city landmark sketch art.",
     panelBg: "linear-gradient(135deg, #1a2a4a 0%, #1e3a6e 40%, #2952a0 100%)",
     leftBg: "#1c2f52",
     accentColor: "#93c5fd",
   },
   {
-    src: "/floral_jute_bag.png",
-    tag: "Trending Now",
-    title: "Floral Blooms",
-    subtitle: "Vibrant & Stylish",
-    desc: "Stunning white jute bag with vibrant hand-printed floral bouquet. Perfect for every occasion.",
+    src: "/collection_traditional.png",
+    desktopSrc: "/collection_traditional.png",
+    mobileSrc: "/collection_traditional.png",
+    tag: "Artisanal Art",
+    title: "Madhubani Peacock",
+    subtitle: "Hand-painted Jute Bag",
+    desc: "Beautiful circular Madhubani peacock painting on natural jute thread with blue webbed handles.",
     panelBg: "linear-gradient(135deg, #4a1a3a 0%, #7a2060 40%, #a03078 100%)",
     leftBg: "#551a42",
     accentColor: "#f9a8d4",
   },
   {
-    src: "/artistic_printed_jute_bags.png",
-    tag: "Best Value",
+    src: "/artistic_printed_jute_bags_sale.png",
+    desktopSrc: "/artistic_printed_jute_bags_sale.png",
+    mobileSrc: "/artistic_printed_jute_bags_sale.png",
+    tag: "SPECIAL SALE • UP TO 67% OFF",
     title: "Art Collections",
     subtitle: "Sets of 4 Bags",
-    desc: "Gorgeous printed canvas jute bags — Horse, Book, Floral & Bicycle. Set of 4 at unbeatable price.",
+    desc: "Gorgeous printed canvas jute bags — Horse, Book, Floral & Bicycle. Special discount sale offer starting at ₹99!",
     panelBg: "linear-gradient(135deg, #1a2a2a 0%, #1e4a4a 40%, #226666 100%)",
     leftBg: "#1a3030",
     accentColor: "#67e8f9",
@@ -313,11 +325,36 @@ export default function HomeClient() {
                 className={styles.heroBannerLeft}
                 style={{ backgroundColor: slide.leftBg }}
               >
-                <img
-                  src={slide.src}
-                  alt={slide.title}
-                  className={styles.heroBannerImg}
-                />
+                <picture style={{ width: "100%", height: "100%", display: "block" }}>
+                  <source media="(max-width: 640px)" srcSet={slide.mobileSrc} />
+                  <img
+                    src={slide.desktopSrc}
+                    alt={slide.title}
+                    className={styles.heroBannerImg}
+                  />
+                </picture>
+                {/* Navigation Arrow Buttons directly on Image */}
+                <button
+                  className={`${styles.heroNavBtn} ${styles.heroNavPrev}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
+                  }}
+                  aria-label="Previous Slide"
+                >
+                  <ChevronLeft size={22} />
+                </button>
+                <button
+                  className={`${styles.heroNavBtn} ${styles.heroNavNext}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentSlide((prev) => (prev === HERO_SLIDES.length - 1 ? 0 : prev + 1));
+                  }}
+                  aria-label="Next Slide"
+                >
+                  <ChevronRight size={22} />
+                </button>
+
                 {/* Mobile-only dots — shows on image when right panel hidden */}
                 <div className={styles.mobileHeroDots}>
                   {HERO_SLIDES.map((_, i) => (
@@ -338,13 +375,13 @@ export default function HomeClient() {
               >
                 {/* Decorative mandala SVG */}
                 <svg className={styles.mandalaBg} viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="200" cy="200" r="190" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
-                  <circle cx="200" cy="200" r="150" stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
-                  <circle cx="200" cy="200" r="110" stroke="rgba(255,255,255,0.04)" strokeWidth="1"/>
-                  {[0,30,60,90,120,150,180,210,240,270,300,330].map(a => (
+                  <circle cx="200" cy="200" r="190" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+                  <circle cx="200" cy="200" r="150" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+                  <circle cx="200" cy="200" r="110" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+                  {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(a => (
                     <line key={a} x1="200" y1="10" x2="200" y2="390"
                       transform={`rotate(${a} 200 200)`}
-                      stroke="rgba(255,255,255,0.03)" strokeWidth="1"/>
+                      stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
                   ))}
                 </svg>
 
@@ -363,9 +400,9 @@ export default function HomeClient() {
                     Shop Collection <ArrowRight size={16} />
                   </Link>
                   <div className={styles.heroBannerTrustRow}>
-                    <div className={styles.heroBannerTrustItem}><Leaf size={13}/> Eco Friendly</div>
-                    <div className={styles.heroBannerTrustItem}><Shield size={13}/> GOTS Certified</div>
-                    <div className={styles.heroBannerTrustItem}><Award size={13}/> 25+ Yrs</div>
+                    <div className={styles.heroBannerTrustItem}><Leaf size={13} /> Eco Friendly</div>
+                    <div className={styles.heroBannerTrustItem}><Shield size={13} /> GOTS Certified</div>
+                    <div className={styles.heroBannerTrustItem}><Award size={13} /> 25+ Yrs</div>
                   </div>
                 </div>
 
@@ -426,6 +463,9 @@ export default function HomeClient() {
                     onClick={() => setEnquiryProduct(product)}
                   >
                     <div className={styles.imageAreaClean}>
+                      <span className={styles.topSaleBadge}>
+                        {Math.round((((product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)) - product.price) / (product.price === 99 ? 299 : (product.price === 199 ? 399 : 999))) * 100)}% OFF
+                      </span>
                       <img
                         src={product.image}
                         alt={product.name}
@@ -438,7 +478,8 @@ export default function HomeClient() {
                     <div className={styles.detailsClean}>
                       <h3 className={styles.cardNameClean}>{product.name}</h3>
                       <span className={styles.priceClean}>
-                        Rs. {product.price.toFixed(2)}
+                        <span className={styles.originalPrice}>₹{product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)}</span>
+                        ₹{product.price}
                       </span>
                       <div className={styles.ratingClean}>
                         <span className={styles.starsClean}>
@@ -523,7 +564,11 @@ export default function HomeClient() {
                     <div className={styles.detailsClean}>
                       <h3 className={styles.cardNameClean}>{product.name}</h3>
                       <span className={styles.priceClean}>
-                        Rs. {product.price.toFixed(2)}
+                        <span className={styles.originalPrice}>₹{product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)}</span>
+                        ₹{product.price}
+                        <span className={styles.discountPercent}>
+                          ({Math.round((((product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)) - product.price) / (product.price === 99 ? 299 : (product.price === 199 ? 399 : 999))) * 100)}% off)
+                        </span>
                       </span>
                       <div className={styles.ratingClean}>
                         <span className={styles.starsClean}>
@@ -829,7 +874,11 @@ export default function HomeClient() {
                 <div className={styles.modalPriceRow} style={{ flexDirection: "column", alignItems: "stretch", gap: "16px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                     <span className={styles.modalPrice} style={{ margin: 0 }}>
+                      <span className={styles.originalPriceLg}>₹{enquiryProduct.price === 99 ? 299 : (enquiryProduct.price === 199 ? 399 : 999)}</span>
                       ₹{enquiryProduct.price.toLocaleString("en-IN")}
+                      <span className={styles.discountBadgeLg}>
+                        {Math.round((((enquiryProduct.price === 99 ? 299 : (enquiryProduct.price === 199 ? 399 : 999)) - enquiryProduct.price) / (enquiryProduct.price === 99 ? 299 : (enquiryProduct.price === 199 ? 399 : 999))) * 100)}% OFF
+                      </span>
                     </span>
                     <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>Direct Order Price</span>
                   </div>

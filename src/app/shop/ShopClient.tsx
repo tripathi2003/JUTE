@@ -158,6 +158,9 @@ export default function ShopClient() {
                           className={styles.imageArea}
                           onClick={() => setSelectedProduct(product)}
                         >
+                          <span className={styles.topSaleBadge}>
+                            {Math.round((((product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)) - product.price) / (product.price === 99 ? 299 : (product.price === 199 ? 399 : 999))) * 100)}% OFF
+                          </span>
                           <img
                             src={product.image}
                             alt={product.name}
@@ -183,6 +186,7 @@ export default function ShopClient() {
                           </div>
                           <div className={styles.priceRow}>
                             <span className={styles.price}>
+                              <span className={styles.originalPrice}>₹{product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)}</span>
                               ₹{product.price.toLocaleString("en-IN")}
                             </span>
                              <button
@@ -281,7 +285,11 @@ export default function ShopClient() {
                 <div className={styles.modalPriceRow} style={{ flexDirection: "column", alignItems: "stretch", gap: "16px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                     <span className={styles.modalPrice} style={{ margin: 0 }}>
+                      <span className={styles.originalPriceLg}>₹{selectedProduct.price === 99 ? 299 : (selectedProduct.price === 199 ? 399 : 999)}</span>
                       ₹{selectedProduct.price.toLocaleString("en-IN")}
+                      <span className={styles.discountBadgeLg}>
+                        {Math.round((((selectedProduct.price === 99 ? 299 : (selectedProduct.price === 199 ? 399 : 999)) - selectedProduct.price) / (selectedProduct.price === 99 ? 299 : (selectedProduct.price === 199 ? 399 : 999))) * 100)}% OFF
+                      </span>
                     </span>
                     <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>Direct Order Price</span>
                   </div>

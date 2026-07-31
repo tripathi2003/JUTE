@@ -26,7 +26,7 @@ const PRODUCTS: ProductType[] = [
   {
     id: "raw-curing-sheet",
     name: "Concrete Curing Jute Sheet (Hessian Wrap)",
-    price: 4500,
+    price: 499,
     category: "Curing Materials",
     description: "Heavy-duty, high water-retentive natural jute sheets. Designed specifically for construction sites to wrap concrete columns, beams, and slabs to prevent rapid evaporation and ensure maximum concrete strength.",
     specs: {
@@ -41,7 +41,7 @@ const PRODUCTS: ProductType[] = [
   {
     id: "raw-hessian-roll",
     name: "Premium Burlap Hessian Roll",
-    price: 2800,
+    price: 499,
     category: "Hessian Cloth",
     description: "Natural brown raw jute fabric in rolls. Perfect for agricultural root ball wrapping, landscaping, soil erosion control (geotextiles), frost protection, and bulk rustic decorations.",
     specs: {
@@ -56,7 +56,7 @@ const PRODUCTS: ProductType[] = [
   {
     id: "raw-white-sack",
     name: "White Laminated Woven Packing Bag",
-    price: 250,
+    price: 499,
     category: "Packing Sacks",
     description: "Extra-tough, UV-stabilized white woven sacks. Highly resilient and moisture-resistant, making them ideal for heavy packing, flood control sand hoarding, and construction materials.",
     specs: {
@@ -65,13 +65,13 @@ const PRODUCTS: ProductType[] = [
       feature: "Water & Dust Resistant",
       origin: "Gujarat, India"
     },
-    image: "/raw_white_woven_bag.png",
-    images: ["/raw_white_woven_bag.png", "/white_woven_bag_detail.png"]
+    image: "/white_woven_bag_detail.png",
+    images: ["/white_woven_bag_detail.png"]
   },
   {
     id: "raw-gunny-bags",
     name: "Bulk Jute Sacking Bags (Gunny Bags)",
-    price: 420,
+    price: 499,
     category: "Packing Sacks",
     description: "Traditional high-capacity double-sewed jute sacking sacks. Extremely robust, breathable, and designed for heavy warehouse storage of grains, rice, potatoes, onions, and agricultural logistics.",
     specs: {
@@ -86,7 +86,7 @@ const PRODUCTS: ProductType[] = [
   {
     id: "raw-sacking-bag",
     name: "Heavy-Grade Jute Sacking Rolls",
-    price: 3200,
+    price: 499,
     category: "Packing Sacks",
     description: "Classic, coarse-weave raw jute sacking rolls. Highly breathable and double-strength, designed for wrapping nursery plants, bulk logistics, construction floor protection, and heavy packing.",
     specs: {
@@ -95,8 +95,8 @@ const PRODUCTS: ProductType[] = [
       feature: "Highly Breathable Fiber",
       origin: "West Bengal, India"
     },
-    image: "/raw_sacking_rolls.png",
-    images: ["/raw_sacking_rolls.png"]
+    image: "/raw_sacking_rolls_new.png",
+    images: ["/raw_sacking_rolls_new.png"]
   }
 ];
 
@@ -135,12 +135,12 @@ export default function CuringClient() {
   // Estimator Calculations
   const selectedRoll = useMemo(() => {
     if (rollType === "raw-hessian-roll") {
-      return { name: "Premium Burlap Hessian Roll (1.5m x 50m)", area: 75, gsm: 280, price: 2800 };
+      return { name: "Premium Burlap Hessian Roll (1.5m x 50m)", area: 75, gsm: 280, price: 499 };
     }
     if (rollType === "raw-sacking-bag") {
-      return { name: "Heavy-Grade Jute Sacking Roll (1.2m x 50m)", area: 60, gsm: 450, price: 3200 };
+      return { name: "Heavy-Grade Jute Sacking Roll (1.2m x 50m)", area: 60, gsm: 450, price: 499 };
     }
-    return { name: "Concrete Curing Jute Sheet (1.2m x 100m)", area: 120, gsm: 350, price: 4500 };
+    return { name: "Concrete Curing Jute Sheet (1.2m x 100m)", area: 120, gsm: 350, price: 499 };
   }, [rollType]);
 
   const totalSlabArea = slabLength * slabWidth * slabsCount;
@@ -311,8 +311,12 @@ Please provide a bulk quote.`;
 
                     <div className={styles.priceRow}>
                       <div className={styles.priceContainer}>
+                        <span className={styles.originalPrice}>₹{product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)}</span>
                         <span className={styles.currencySymbol}>₹</span>
                         <span className={styles.priceVal}>{product.price.toLocaleString("en-IN")}</span>
+                        <span className={styles.discountPercent}>
+                          ({Math.round((((product.price === 99 ? 299 : (product.price === 199 ? 399 : 999)) - product.price) / (product.price === 99 ? 299 : (product.price === 199 ? 399 : 999))) * 100)}% off)
+                        </span>
                       </div>
                       <button
                         className={styles.enquireBtn}
@@ -657,7 +661,11 @@ Please provide a bulk quote.`;
 
                 <div className={styles.modalPriceRow}>
                   <span className={styles.modalPrice}>
+                    <span className={styles.originalPriceLg}>₹{selectedProduct.price === 99 ? 299 : (selectedProduct.price === 199 ? 399 : 999)}</span>
                     ₹{selectedProduct.price.toLocaleString("en-IN")}
+                    <span className={styles.discountBadgeLg}>
+                      {Math.round((((selectedProduct.price === 99 ? 299 : (selectedProduct.price === 199 ? 399 : 999)) - selectedProduct.price) / (selectedProduct.price === 99 ? 299 : (selectedProduct.price === 199 ? 399 : 999))) * 100)}% OFF
+                    </span>
                   </span>
                   <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>Bulk Order Price</span>
                 </div>

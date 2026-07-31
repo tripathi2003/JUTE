@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-yrlen-turquoise",
     name: "Yrlen Premium Turquoise Jute Tote Bag",
-    price: 499,
+    price: 99,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 110,
@@ -31,7 +31,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-paris",
     name: "Paris Eiffel Tower Sketch Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.8,
     reviews: 86,
@@ -45,7 +45,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-rangwala",
     name: "Rangwala Designer Kurties Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 142,
@@ -59,7 +59,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-floral-bouquet",
     name: "Floral Bouquet Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 128,
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-vibrant-floral",
     name: "Vibrant Floral Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.8,
     reviews: 92,
@@ -87,7 +87,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-2",
     name: "Classic Artisanal Jute Tote Bag",
-    price: 499,
+    price: 99,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 340,
@@ -101,7 +101,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-4",
     name: "Pichwai Cow & Calf Jute Shopping Bag",
-    price: 499,
+    price: 199,
     category: "Shopping Bags",
     rating: 4.8,
     reviews: 156,
@@ -115,7 +115,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-5",
     name: "Under The Sea Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 242,
@@ -129,7 +129,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-6",
     name: "Madhubani Peacock Jute Lunch Bag",
-    price: 499,
+    price: 199,
     category: "Lunch & Bottle Bags",
     rating: 4.7,
     reviews: 184,
@@ -143,7 +143,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-7",
     name: "Water is our best friend jute bottle bag",
-    price: 499,
+    price: 199,
     category: "Lunch & Bottle Bags",
     rating: 4.8,
     reviews: 96,
@@ -157,7 +157,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-8",
     name: "Premium Yellow Heart Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.8,
     reviews: 112,
@@ -171,7 +171,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-9",
     name: "Lace-Trim Jute Bags with Window (Set of 4)",
-    price: 499,
+    price: 99,
     category: "Gift Bags",
     rating: 4.7,
     reviews: 88,
@@ -185,7 +185,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-10",
     name: "Artistic Printed Jute Tote Bags (Set of 4)",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 145,
@@ -199,7 +199,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-11",
     name: "Colorful Heart-Pattern Jute Gift Bags (Set of 4)",
-    price: 499,
+    price: 199,
     category: "Gift Bags",
     rating: 4.6,
     reviews: 76,
@@ -213,7 +213,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-12",
     name: "Promo Custom Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.8,
     reviews: 94,
@@ -227,7 +227,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-13",
     name: "Premium Diamond-Pattern Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 108,
@@ -241,7 +241,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-14",
     name: "Hamburg Landmark Sketch Jute Shopping Bag",
-    price: 499,
+    price: 199,
     category: "Shopping Bags",
     rating: 4.7,
     reviews: 82,
@@ -255,7 +255,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-15",
     name: "Kerala Ayurveda International Yoga Day Jute Bag",
-    price: 499,
+    price: 199,
     category: "Shopping Bags",
     rating: 4.8,
     reviews: 64,
@@ -269,7 +269,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-baddie-hibiscus",
     name: "Baddie Hibiscus Pink Jute Tote Bag",
-    price: 499,
+    price: 199,
     category: "Tote Bags",
     rating: 4.9,
     reviews: 72,
@@ -286,7 +286,7 @@ export const FEATURED_CURING_PRODUCTS: Product[] = [
   {
     id: "raw-curing-sheet",
     name: "Concrete Curing Jute Sheet (Hessian Wrap)",
-    price: 4500,
+    price: 499,
     category: "Curing Materials",
     rating: 4.8,
     reviews: 142,
@@ -300,7 +300,7 @@ export const FEATURED_CURING_PRODUCTS: Product[] = [
   {
     id: "raw-hessian-roll",
     name: "Premium Burlap Hessian Roll",
-    price: 2800,
+    price: 499,
     category: "Hessian Cloth",
     rating: 4.9,
     reviews: 198,
@@ -314,7 +314,7 @@ export const FEATURED_CURING_PRODUCTS: Product[] = [
   {
     id: "raw-gunny-bags",
     name: "Bulk Jute Sacking Bags (Gunny Bags)",
-    price: 420,
+    price: 499,
     category: "Packing Sacks",
     rating: 4.7,
     reviews: 215,

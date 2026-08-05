@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 65" fill="none">
+  <path d="M 20 10 L 34 48 L 48 10" stroke="#1c4885" stroke-width="8" stroke-linecap="butt" stroke-linejoin="miter"/>
+  <polygon points="34,10 28,20 40,20" fill="#e85d22"/>
+  <text x="56" y="44" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="800" fill="#1c4885" letter-spacing="4">VENTRA</text>
+  <text x="228" y="22" font-family="'Helvetica Neue', Arial, sans-serif" font-size="9" font-weight="700" fill="#1c4885">TM</text>
+  <text x="153" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#e85d22" letter-spacing="1">Health</text>
+  <polygon points="206,58 213,46 220,58" fill="#e85d22"/>
+</svg>

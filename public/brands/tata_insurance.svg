@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Outer Blue Box -->
+  <rect x="20" y="10" width="200" height="185" fill="#00458E"/>
+  <rect x="28" y="18" width="184" height="169" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+  
+  <!-- TATA Text -->
+  <text x="120" y="68" text-anchor="middle" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-size="36" font-weight="900" fill="#FFFFFF" letter-spacing="4">TATA</text>
+  
+  <!-- AIG Text -->
+  <text x="120" y="122" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="52" font-weight="bold" fill="#FFFFFF" letter-spacing="2">AIG</text>
+  
+  <!-- INSURANCE Text -->
+  <text x="120" y="160" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="800" fill="#FFFFFF" letter-spacing="3">INSURANCE</text>
+  
+  <!-- Subtext below box -->
+  <text x="120" y="222" text-anchor="middle" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-size="16" font-weight="900" fill="#00458E" letter-spacing="2">WITH YOU ALWAYS</text>
+</svg>

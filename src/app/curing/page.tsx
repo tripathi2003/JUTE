@@ -5,6 +5,9 @@ const BASE_URL = "https://jute-ashok-enterprises.vercel.app";
 
 export const metadata: Metadata = {
   title: "Jute Curing Sheets, Hessian Cloth & Raw Materials — Bulk Orders",
+  verification: {
+    google: "google8aafde1e7584c324",
+  },
   description:
     "Buy industrial-grade jute curing sheets for concrete construction, hessian cloth rolls, burlap fabric, gunny bags & jute sacking bags. High-density 350-480 GSM. Bulk commercial pricing. Direct from manufacturer. Pan-India delivery.",
   keywords: [

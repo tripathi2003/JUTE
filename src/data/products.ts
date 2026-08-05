@@ -101,7 +101,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-4",
     name: "Pichwai Cow & Calf Jute Shopping Bag",
-    price: 199,
+    price: 299,
     category: "Shopping Bags",
     rating: 4.8,
     reviews: 156,
@@ -129,7 +129,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-6",
     name: "Madhubani Peacock Jute Lunch Bag",
-    price: 199,
+    price: 299,
     category: "Lunch & Bottle Bags",
     rating: 4.7,
     reviews: 184,
@@ -143,7 +143,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "prod-7",
     name: "Water is our best friend jute bottle bag",
-    price: 199,
+    price: 149,
     category: "Lunch & Bottle Bags",
     rating: 4.8,
     reviews: 96,

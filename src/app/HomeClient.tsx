@@ -155,6 +155,49 @@ const TESTIMONIALS = [
   },
 ];
 
+const BRAND_LOGOS = [
+  { name: "Haldiram's", src: "/brands/haldiram.png" },
+  { name: "Tata AIG Insurance", src: "/brands/tata_insurance.png" },
+  { name: "SBI Bank", src: "/brands/sbi.jpg" },
+  { name: "YES Bank", src: "/brands/yes_bank.png" },
+  { name: "Max Life Insurance", src: "/brands/max_life_insurance.jpg" },
+];
+
+const QUICK_CATEGORIES = [
+  {
+    title: "Handcrafted Art Totes",
+    subtitle: "Madhubani, Pichwai & Designer Jute",
+    tag: "Artisanal",
+    img: "/madhubani_jute_bag.png",
+    link: "/shop",
+    badge: "Bestseller",
+  },
+  {
+    title: "Concrete Curing Sheets",
+    subtitle: "350+ GSM Heavy-Duty Hessian Wraps",
+    tag: "Industrial",
+    img: "/jute_concrete_curing.png",
+    link: "/curing",
+    badge: "Direct Factory",
+  },
+  {
+    title: "Grain & Sacking Bags",
+    subtitle: "Heavy-Duty Gunny Bags for Storage",
+    tag: "Bulk Supply",
+    img: "/raw_gunny_bags.png",
+    link: "/curing",
+    badge: "Wholesale",
+  },
+  {
+    title: "Eco Gift & Utility Bags",
+    subtitle: "Corporate Gifting & Daily Tote Range",
+    tag: "Eco Friendly",
+    img: "/baddie_tote_bag.jpg",
+    link: "/shop",
+    badge: "Custom Logo",
+  },
+];
+
 const TRUST_BADGES = [
   {
     icon: Factory,
@@ -422,7 +465,57 @@ export default function HomeClient() {
           ))}
         </section>
 
-        {/* 2. Featured Products Section */}
+        {/* 2. Trusted Clients & Corporate Partners */}
+        <section className={`${styles.brandsSection} ${styles.revealSection}`}>
+          <div className="container">
+            <div className={styles.sectionHeader} style={{ marginBottom: "20px" }}>
+              <span className={styles.subtitle}>Trusted Partners & Deals</span>
+              <h2 className={styles.sectionTitle}>Brands We Work With</h2>
+              <p className={styles.sectionDesc}>
+                Proud supplier of eco-friendly jute bags, corporate packaging & custom jute products to leading companies across India and worldwide.
+              </p>
+            </div>
+          </div>
+          <div className={styles.brandsMarqueeWrap}>
+            <div className={styles.brandsMarqueeTrack}>
+              {[...BRAND_LOGOS, ...BRAND_LOGOS, ...BRAND_LOGOS, ...BRAND_LOGOS].map((brand, index) => (
+                <div key={`${brand.name}-${index}`} className={styles.brandLogoCard} title={brand.name}>
+                  <img
+                    src={brand.src}
+                    alt={brand.name}
+                    className={styles.brandLogoImg}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Category Quick Fast-Track Showcase */}
+        <section className={`${styles.quickCatSection} ${styles.revealSection}`}>
+          <div className="container">
+            <div className={styles.quickCatGrid}>
+              {QUICK_CATEGORIES.map((cat, i) => (
+                <Link key={i} href={cat.link} className={styles.quickCatCard}>
+                  <div className={styles.quickCatImageWrap}>
+                    <img src={cat.img} alt={cat.title} className={styles.quickCatImg} />
+                    <span className={styles.quickCatBadge}>{cat.badge}</span>
+                  </div>
+                  <div className={styles.quickCatContent}>
+                    <span className={styles.quickCatTag}>{cat.tag}</span>
+                    <h3 className={styles.quickCatTitle}>{cat.title}</h3>
+                    <p className={styles.quickCatSubtitle}>{cat.subtitle}</p>
+                    <span className={styles.quickCatBtn}>
+                      Explore Collection <ArrowRight size={14} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Featured Products Section */}
         <section className={`${styles.featuredSection} ${styles.revealSection} section-padding`}>
           <div className="container">
             <div className={styles.sectionHeader}>

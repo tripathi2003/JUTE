@@ -2796,9 +2796,238 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  .calculatorCard {
-    padding: 20px;
-    gap: 24px;
+}
+
+/* =========================================================
+   BRAND LOGOS MARQUEE SECTION
+   ========================================================= */
+.brandsSection {
+  padding: 65px 0 60px;
+  background: #faf7f2;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.brandsMarqueeWrap {
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 16px 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+}
+
+.brandsMarqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+}
+
+.brandsMarqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 
+.brandLogoCard {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: #ffffff;
+  border-radius: var(--radius-md, 10px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.brandLogoCard:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.brandLogoImg {
+  height: 56px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .brandsSection {
+    padding: 45px 0 40px;
+  }
+  .brandsMarqueeTrack {
+    gap: 48px;
+    animation-duration: 25s;
+  }
+  .brandLogoCard {
+    padding: 8px 18px;
+  }
+  .brandLogoImg {
+    height: 50px;
+    max-width: 200px;
+  }
+}
+
+/* =========================================================
+   CATEGORY QUICK FAST-TRACK SHOWCASE
+   ========================================================= */
+.quickCatSection {
+  padding: 60px 0;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.quickCatGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.quickCatCard {
+  display: flex;
+  flex-direction: column;
+  background: #faf7f2;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.quickCatCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(46, 90, 39, 0.12);
+  border-color: var(--primary);
+  background: #ffffff;
+}
+
+.quickCatImageWrap {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  background: #f0ebe1;
+}
+
+.quickCatImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.quickCatCard:hover .quickCatImg {
+  transform: scale(1.06);
+}
+
+.quickCatBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.quickCatContent {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.quickCatTag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-gold, #c48c28);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.quickCatTitle {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.quickCatSubtitle {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.quickCatBtn {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  transition: gap 0.2s ease;
+}
+
+.quickCatCard:hover .quickCatBtn {
+  gap: 10px;
+  color: #1b3d18;
+}
+
+@media (max-width: 1100px) {
+  .quickCatGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .quickCatSection {
+    padding: 40px 0;
+  }
+  .quickCatGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .quickCatImageWrap {
+    height: 180px;
+  }
+}

@@ -54,21 +54,6 @@ const PRODUCTS: ProductType[] = [
     images: ["/raw_hessian_roll.png", "/hessian_roll_detail.png"]
   },
   {
-    id: "raw-white-sack",
-    name: "White Laminated Woven Packing Bag",
-    price: 499,
-    category: "Packing Sacks",
-    description: "Extra-tough, UV-stabilized white woven sacks. Highly resilient and moisture-resistant, making them ideal for heavy packing, flood control sand hoarding, and construction materials.",
-    specs: {
-      dimensions: "Pack of 25 Bags (55cm x 95cm)",
-      thickness: "90 GSM (Laminated)",
-      feature: "Water & Dust Resistant",
-      origin: "Gujarat, India"
-    },
-    image: "/white_woven_bag_detail.png",
-    images: ["/white_woven_bag_detail.png"]
-  },
-  {
     id: "raw-gunny-bags",
     name: "Bulk Jute Sacking Bags (Gunny Bags)",
     price: 499,
@@ -160,7 +145,7 @@ Please provide a bulk quote.`;
 
   const encodedMessage = encodeURIComponent(whatsappMessage);
 
-  const categories = ["All", "Curing Materials", "Hessian Cloth", "Packing Sacks", "Twines"];
+  const categories = ["All", "Curing Materials", "Hessian Cloth", "Packing Sacks"];
 
   const filteredProducts = useMemo(() => {
     if (selectedCategory === "All") return PRODUCTS;
@@ -209,7 +194,7 @@ Please provide a bulk quote.`;
                     />
                   </div>
                 ))}
-                
+
                 {/* Arrow Navigation */}
                 <button
                   className={styles.bannerArrowLeft}
@@ -346,7 +331,7 @@ Please provide a bulk quote.`;
             <div className={styles.estimatorCard}>
               <div className={styles.estimatorLeft}>
                 <h3 className={styles.estimatorSubheading}>Enter Slab Dimensions</h3>
-                
+
                 <div className={styles.inputGroupGrid}>
                   <div className={styles.inputFieldWrap}>
                     <label className={styles.inputLabel}>Slab Length (meters)</label>
@@ -411,7 +396,7 @@ Please provide a bulk quote.`;
 
               <div className={styles.estimatorRight}>
                 <h4 className={styles.resultsHeading}>Estimation Summary</h4>
-                
+
                 <div className={styles.estimateGrid}>
                   <div className={styles.estimateRow}>
                     <span className={styles.estimateLabel}>Total Slab Area</span>
@@ -465,7 +450,7 @@ Please provide a bulk quote.`;
                   Concrete Curing on Construction Sites
                 </h2>
                 <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
-                  Ashok Enterprises provides high-density, raw jute sheets specially woven for building construction projects. 
+                  Ashok Enterprises provides high-density, raw jute sheets specially woven for building construction projects.
                   Wrapping concrete pillars, columns, and slabs with wet jute sacking sheets (Hessian bags) prevents the water from evaporating too quickly during the critical curing phase.
                 </p>
                 <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
@@ -488,7 +473,7 @@ Please provide a bulk quote.`;
                   Strong Biodegradable Ropes & Twines
                 </h2>
                 <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
-                  Jute fibers are twisted and spun into multiple plies to create highly reliable, eco-friendly ropes (known locally as &quot;rasan&quot; or &quot;rassa&quot;). 
+                  Jute fibers are twisted and spun into multiple plies to create highly reliable, eco-friendly ropes (known locally as &quot;rasan&quot; or &quot;rassa&quot;).
                   These are extensively used for bundling agricultural crops, secure packaging, tying construction scaffolding, and creating artisanal crafts.
                 </p>
                 <p style={{ fontSize: "1rem", lineHeight: "1.65", opacity: 0.9 }}>
@@ -614,9 +599,8 @@ Please provide a bulk quote.`;
                     {selectedProduct.images.map((imgUrl: string) => (
                       <button
                         key={imgUrl}
-                        className={`${styles.thumbnailBtn} ${
-                          activeImage === imgUrl ? styles.activeThumbnail : ""
-                        }`}
+                        className={`${styles.thumbnailBtn} ${activeImage === imgUrl ? styles.activeThumbnail : ""
+                          }`}
                         onClick={() => setActiveImage(imgUrl)}
                       >
                         <img

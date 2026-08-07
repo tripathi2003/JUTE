@@ -29,6 +29,7 @@ const Navbar: React.FC = () => {
     { name: "Home", href: "/" },
     { name: "Artisanal Shop", href: "/shop" },
     { name: "Curing Materials", href: "/curing" },
+    { name: "PP Woven Bags", href: "/polypropylene" },
   ];
 
   return (

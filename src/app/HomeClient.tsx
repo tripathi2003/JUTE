@@ -20,10 +20,31 @@ import {
   Quote,
   ChevronLeft,
   ChevronRight,
+  Calculator,
+  ShieldCheck,
+  Droplets,
+  Sun,
+  Layers,
+  Zap,
 } from "lucide-react";
 import styles from "./page.module.css";
 
 import { PRODUCTS as ALL_PRODUCTS, FEATURED_CURING_PRODUCTS, type Product } from "../data/products";
+
+const WHITE_WOVEN_PRODUCT: Product = {
+  id: "raw-white-sack",
+  name: "White Laminated Woven Packing Bag",
+  price: 499,
+  category: "Packing Sacks",
+  rating: 4.9,
+  reviews: 164,
+  image: "/white_woven_bag_detail.png",
+  images: ["/white_woven_bag_detail.png"],
+  description: "Extra-tough, UV-stabilized white woven sacks. Highly resilient and moisture-resistant, making them ideal for heavy packing, flood control sand hoarding, and construction materials.",
+  origin: "Gujarat, India",
+  material: "90 GSM Laminated White Woven PP/HDPE (UV Resistant)",
+  dimensions: "Pack of 25 Bags (55cm x 95cm)"
+};
 
 const HERO_SLIDES = [
   {
@@ -263,6 +284,32 @@ export default function HomeClient() {
   const [activeImage, setActiveImage] = React.useState<string | null>(null);
   const [statsVisible, setStatsVisible] = React.useState(false);
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
+
+  // White Woven Bag Estimator State
+  const [wovenTargetKg, setWovenTargetKg] = React.useState<number>(1000);
+  const [wovenBagCapacity, setWovenBagCapacity] = React.useState<number>(50);
+
+  const wovenCalculations = React.useMemo(() => {
+    const safeCapacity = wovenBagCapacity > 0 ? wovenBagCapacity : 50;
+    const safeTargetKg = wovenTargetKg > 0 ? wovenTargetKg : 100;
+    const bagsNeeded = Math.ceil(safeTargetKg / safeCapacity);
+    const packsNeeded = Math.ceil(bagsNeeded / 25);
+    const totalBags = packsNeeded * 25;
+    const packPrice = 499;
+    const originalPackPrice = 999;
+    const totalCost = packsNeeded * packPrice;
+    const originalTotalCost = packsNeeded * originalPackPrice;
+    const totalSavings = originalTotalCost - totalCost;
+    return {
+      bagsNeeded,
+      packsNeeded,
+      totalBags,
+      packPrice,
+      totalCost,
+      originalTotalCost,
+      totalSavings
+    };
+  }, [wovenTargetKg, wovenBagCapacity]);
 
 
   const artisanalScrollRef = React.useRef<HTMLDivElement>(null);
@@ -701,6 +748,242 @@ export default function HomeClient() {
               <Link href="/curing" className={styles.viewAllBtn}>
                 Explore All Curing Materials <ArrowRight size={18} />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Dedicated White Laminated Woven Packing Bag Material Section */}
+        <section className={`${styles.wovenShowcaseSection} ${styles.revealSection} section-padding`}>
+          <div className="container">
+            <div className={styles.wovenHeader}>
+              <div className={styles.wovenBadgeGroup}>
+                <span className={styles.wovenTag}>Feature Material Spotlight</span>
+                <span className={styles.wovenTagHighlight}>90 GSM LAMINATED</span>
+                <span className={styles.wovenTagUv}>UV STABILIZED</span>
+              </div>
+              <h2 className={styles.wovenTitle}>White Laminated Woven Packing Bags</h2>
+              <p className={styles.wovenSubtitle}>
+                Extra-tough, weather-proof white woven sacks designed for heavy packing, flood control sandbags, agricultural grain storage, and construction material logistics.
+              </p>
+            </div>
+
+            {/* Split Visual & Interactive Estimator Grid */}
+            <div className={styles.wovenGrid}>
+              {/* Left Column: Visual Showcase & Specifications */}
+              <div className={styles.wovenVisualCard}>
+                <div className={styles.wovenImageWrap}>
+                  <span className={styles.wovenDiscountBadge}>50% OFF • WHOLESALE</span>
+                  <img
+                    src="/white_woven_bag_detail.png"
+                    alt="White Laminated Woven Packing Bag"
+                    className={styles.wovenImg}
+                  />
+                  <div className={styles.wovenPriceTagFloating}>
+                    <span className={styles.wovenPriceMain}>₹499</span>
+                    <span className={styles.wovenPriceOriginal}>₹999</span>
+                    <span className={styles.wovenPricePackLabel}>/ Pack of 25 Bags</span>
+                  </div>
+                </div>
+
+                <div className={styles.wovenSpecGrid}>
+                  <div className={styles.wovenSpecItem}>
+                    <span className={styles.wovenSpecLabel}>Dimensions</span>
+                    <strong className={styles.wovenSpecValue}>55cm x 95cm</strong>
+                  </div>
+                  <div className={styles.wovenSpecItem}>
+                    <span className={styles.wovenSpecLabel}>Fabric / Density</span>
+                    <strong className={styles.wovenSpecValue}>90 GSM (Laminated)</strong>
+                  </div>
+                  <div className={styles.wovenSpecItem}>
+                    <span className={styles.wovenSpecLabel}>Special Feature</span>
+                    <strong className={styles.wovenSpecValue}>Water & Dust Resistant</strong>
+                  </div>
+                  <div className={styles.wovenSpecItem}>
+                    <span className={styles.wovenSpecLabel}>Load Capacity</span>
+                    <strong className={styles.wovenSpecValue}>Up to 50 kg / Bag</strong>
+                  </div>
+                </div>
+
+                <div className={styles.wovenSpecFooterAction}>
+                  <button
+                    className={styles.wovenQuickViewBtn}
+                    onClick={() => setEnquiryProduct(WHITE_WOVEN_PRODUCT)}
+                  >
+                    View Product Specs & Gallery
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Interactive Bulk Bag Estimator */}
+              <div className={styles.wovenEstimatorCard}>
+                <div className={styles.estimatorCardHeader}>
+                  <div className={styles.estimatorHeaderIcon}>
+                    <Calculator size={24} />
+                  </div>
+                  <div>
+                    <h3 className={styles.estimatorTitle}>Bulk Bag & Cost Estimator</h3>
+                    <p className={styles.estimatorSubtitle}>
+                      Calculate exact number of bags required for your project weight or volume.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 1: Weight Requirement Input */}
+                <div className={styles.estimatorInputBlock}>
+                  <label className={styles.estimatorLabel}>
+                    1. Target Material Weight to Pack (KG):
+                  </label>
+                  <div className={styles.presetButtonsRow}>
+                    {[500, 1000, 2500, 5000, 10000].map((kg) => (
+                      <button
+                        key={kg}
+                        className={`${styles.presetBtn} ${wovenTargetKg === kg ? styles.presetBtnActive : ""}`}
+                        onClick={() => setWovenTargetKg(kg)}
+                      >
+                        {kg >= 1000 ? `${kg / 1000} Ton` : `${kg} kg`}
+                      </button>
+                    ))}
+                  </div>
+                  <div className={styles.customInputRow}>
+                    <input
+                      type="number"
+                      min="50"
+                      step="50"
+                      value={wovenTargetKg}
+                      onChange={(e) => setWovenTargetKg(Math.max(1, Number(e.target.value)))}
+                      className={styles.estimatorInput}
+                      placeholder="Enter custom weight in kg"
+                    />
+                    <span className={styles.inputUnit}>KG</span>
+                  </div>
+                </div>
+
+                {/* Step 2: Bag Capacity Selection */}
+                <div className={styles.estimatorInputBlock}>
+                  <label className={styles.estimatorLabel}>
+                    2. Select Weight Capacity per Bag:
+                  </label>
+                  <div className={styles.capacityRadioGroup}>
+                    <button
+                      className={`${styles.capacityBtn} ${wovenBagCapacity === 50 ? styles.capacityBtnActive : ""}`}
+                      onClick={() => setWovenBagCapacity(50)}
+                    >
+                      <strong>50 KG / Bag</strong>
+                      <span>Heavy Duty Standard</span>
+                    </button>
+                    <button
+                      className={`${styles.capacityBtn} ${wovenBagCapacity === 25 ? styles.capacityBtnActive : ""}`}
+                      onClick={() => setWovenBagCapacity(25)}
+                    >
+                      <strong>25 KG / Bag</strong>
+                      <span>Medium Weight Carry</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Calculated Results Summary Box */}
+                <div className={styles.estimatorResultsBox}>
+                  <div className={styles.resultItemBig}>
+                    <span className={styles.resultLabel}>Required Bags</span>
+                    <strong className={styles.resultValHighlight}>
+                      {wovenCalculations.bagsNeeded} Bags
+                    </strong>
+                    <span className={styles.resultSubtext}>
+                      ({wovenCalculations.packsNeeded} Pack{wovenCalculations.packsNeeded > 1 ? "s" : ""} of 25 = {wovenCalculations.totalBags} total bags)
+                    </span>
+                  </div>
+
+                  <div className={styles.resultItemPrice}>
+                    <div>
+                      <span className={styles.resultLabel}>Total Factory Wholesale Price</span>
+                      <div className={styles.resultPriceRow}>
+                        <span className={styles.resultMainPrice}>₹{wovenCalculations.totalCost.toLocaleString("en-IN")}</span>
+                        <span className={styles.resultOldPrice}>₹{wovenCalculations.originalTotalCost.toLocaleString("en-IN")}</span>
+                      </div>
+                    </div>
+                    <span className={styles.savingsPill}>Save ₹{wovenCalculations.totalSavings.toLocaleString("en-IN")}</span>
+                  </div>
+                </div>
+
+                {/* Action CTA Buttons */}
+                <div className={styles.estimatorActionGroup}>
+                  <a
+                    href={`https://wa.me/919968648541?text=${encodeURIComponent(
+                      `Hi Ashok Enterprises, I want to order ${wovenCalculations.packsNeeded} Pack(s) (${wovenCalculations.totalBags} Bags) of White Laminated Woven Packing Bags for a total target weight of ${wovenTargetKg}kg. Estimated Total: ₹${wovenCalculations.totalCost}. Please share invoice & dispatch timeline.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.wovenWhatsappBtn}
+                  >
+                    <MessageCircle size={20} />
+                    Order {wovenCalculations.packsNeeded} Pack({wovenCalculations.totalBags} Bags) via WhatsApp
+                  </a>
+
+                  <a
+                    href="tel:+919968648541"
+                    className={styles.wovenCallBtn}
+                  >
+                    <Phone size={18} />
+                    Call Direct: +91 99686 48541
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Industrial Applications Grid */}
+            <div className={styles.wovenAppsContainer}>
+              <h3 className={styles.wovenAppsTitle}>Tested & Approved For Heavy Industrial Applications</h3>
+              <div className={styles.wovenAppsGrid}>
+                <div className={styles.wovenAppCard}>
+                  <div className={styles.wovenAppIconWrap} style={{ background: "#e0f2fe", color: "#0284c7" }}>
+                    <Droplets size={26} />
+                  </div>
+                  <h4>Flood Control & Sandbags</h4>
+                  <p>UV-resistant, high burst pressure bags essential for building emergency sand barriers, erosion defense, and damming.</p>
+                </div>
+
+                <div className={styles.wovenAppCard}>
+                  <div className={styles.wovenAppIconWrap} style={{ background: "#fef3c7", color: "#d97706" }}>
+                    <Layers size={26} />
+                  </div>
+                  <h4>Construction Rubble & Debris</h4>
+                  <p>Heavy-gauge laminated weave prevents punctures from sharp concrete edges, mortar, stone rubble, and tiles.</p>
+                </div>
+
+                <div className={styles.wovenAppCard}>
+                  <div className={styles.wovenAppIconWrap} style={{ background: "#dcfce7", color: "#16a34a" }}>
+                    <Sun size={26} />
+                  </div>
+                  <h4>Agriculture & Grain Storage</h4>
+                  <p>Moisture-proof inner laminate protects stored paddy, wheat, pulses, seeds, and animal feeds against rain and pests.</p>
+                </div>
+
+                <div className={styles.wovenAppCard}>
+                  <div className={styles.wovenAppIconWrap} style={{ background: "#f3e8ff", color: "#9333ea" }}>
+                    <Zap size={26} />
+                  </div>
+                  <h4>Chemicals, Minerals & Fertilizers</h4>
+                  <p>Heavy-duty dust containment for packing powder chemicals, mineral ores, dry fertilizers, and raw industrial batch mix.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Custom Printing & Branding Banner */}
+            <div className={styles.wovenBrandingBanner}>
+              <div className={styles.wovenBrandingText}>
+                <h4>Need Custom Logo Printing or Bulk Custom Sizes?</h4>
+                <p>We manufacture custom flexo-printed white woven sacks with your brand logo, batch codes, and safety details for orders over 100 packs.</p>
+              </div>
+              <a
+                href={`https://wa.me/919968648541?text=${encodeURIComponent(
+                  "Hi Ashok Enterprises, I need custom printed White Laminated Woven Packing Bags with my company logo. Please share customization pricing & sample details."
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.wovenBrandingBtn}
+              >
+                Request Custom Printing Quote <ArrowRight size={16} />
+              </a>
             </div>
           </div>
         </section>

@@ -115,7 +115,7 @@ const PRODUCTS: ProductType[] = [
   },
   {
     id: "deco-utility-bag",
-    name: "Decorative & Utility White Woven Bags",
+    name: "Decorative & Utility White Woven Bags (50 KG)",
     price: 529,
     category: "Logistics Sacks",
     description: "Clean finish white woven polypropylene utility bags, suitable for retail packaging, organization, commercial shipping, and customized logo screen printing.",
@@ -127,6 +127,21 @@ const PRODUCTS: ProductType[] = [
     },
     image: "/whitebags/deco.jpeg",
     images: ["/whitebags/deco.jpeg", "/whitebags/show bags.jpeg"]
+  },
+  {
+    id: "heavy-100kg-white-woven-bag",
+    name: "100 KG Heavy Duty White Woven Bags",
+    price: 899,
+    category: "Logistics Sacks",
+    description: "Extra large clean finish white woven polypropylene heavy utility bags engineered for 100 KG loading capacity, bulk grain/rice packaging, industrial shipping, and customized logo printing.",
+    specs: {
+      dimensions: "Pack of 25 Bags (75cm x 120cm - 100kg Cap)",
+      thickness: "110 GSM (Extra Heavy Laminated)",
+      feature: "100 KG Heavy Load & Logo Printable",
+      origin: "West Bengal, India"
+    },
+    image: "/whitebags/woven_bag_100kg.png",
+    images: ["/whitebags/woven_bag_100kg.png", "/whitebags/deco.jpeg", "/whitebags/show bags.jpeg"]
   }
 ];
 

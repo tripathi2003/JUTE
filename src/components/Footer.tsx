@@ -167,7 +167,7 @@ const Footer: React.FC = () => {
                 title="Ashok Enterprises Location"
               />
               <a
-                href="https://maps.app.goo.gl/ashok-enterprises"
+                href="https://www.google.com/maps/search/?api=1&query=Ashok+Enterprises+Jute+%26+Bag"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.mapDirectionsBtn}

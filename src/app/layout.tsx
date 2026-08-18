@@ -10,6 +10,7 @@ import SidebarCart from "@/components/SidebarCart";
 import FloatingContact from "@/components/FloatingContact";
 import { CartProvider } from "@/context/CartContext";
 import { OrganizationJsonLd, LocalBusinessJsonLd, WebSiteJsonLd } from "@/components/JsonLd";
+import Script from "next/script";
 
 const BASE_URL = "https://jute-ashok-enterprises.vercel.app";
 
@@ -124,6 +125,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${outfit.variable}`} data-scroll-behavior="smooth">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18379389647"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-18379389647');
+          `}
+        </Script>
+      </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <OrganizationJsonLd
           name="Ashok Enterprises"

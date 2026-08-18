@@ -48,6 +48,30 @@ const WHITE_WOVEN_PRODUCT: Product = {
 
 const HERO_SLIDES = [
   {
+    src: "/spiderman_hero_banner.jpg",
+    desktopSrc: "/spiderman_hero_banner.jpg",
+    mobileSrc: "/spiderman_mobile_hero.jpg",
+    tag: "NEW ANNOUNCEMENT • SPECIAL LAUNCH SALE",
+    title: "Spider Superhero Tote",
+    subtitle: "Hand-Drawn Pop Culture Canvas",
+    desc: "🔥 NEW ARRIVAL! Spider-Man & Deadpool artistic canvas tote. Heavy-duty organic cotton canvas with wide handles — Special Launch Offer at just ₹299!",
+    panelBg: "linear-gradient(135deg, #7f1d1d 0%, #991b1b 40%, #b91c1c 100%)",
+    leftBg: "#f5ece1",
+    accentColor: "#fca5a5",
+  },
+  {
+    src: "/independence_hero_banner.jpg",
+    desktopSrc: "/independence_hero_banner.jpg",
+    mobileSrc: "/independence_mobile_hero.jpg",
+    tag: "INDEPENDENCE DAY SALE • ANNOUNCEMENT",
+    title: "Proud To Be Indian",
+    subtitle: "Patriotic Tricolor Jute Tote",
+    desc: "🇮🇳 INDEPENDENCE SPECIAL! Celebrate Indian pride with eco-friendly Tricolor & Ashoka Chakra printed golden jute bags. Limited stock on sale for ₹199!",
+    panelBg: "linear-gradient(145deg, #c2410c 0%, #ea580c 32%, #0f172a 48%, #15803d 70%, #064e3b 100%)",
+    leftBg: "#f5f0e6",
+    accentColor: "#fef08a",
+  },
+  {
     src: "/jute_bags_sale_banner_desktop.png",
     desktopSrc: "/jute_bags_sale_banner_desktop.png",
     mobileSrc: "/jute_bags_sale_banner.png",
@@ -596,7 +620,7 @@ export default function HomeClient() {
               </button>
 
               <div className={styles.featuredGrid} ref={artisanalScrollRef}>
-                {filteredProducts.slice(0, 6).map((product) => (
+                {filteredProducts.slice(0, 12).map((product) => (
                   <div
                     key={product.id}
                     className={styles.productCardClean}

@@ -5,6 +5,23 @@ import Link from "next/link";
 import { Phone, MessageCircle, MapPin, Clock, Send, Factory, Truck, Leaf, ShieldCheck } from "lucide-react";
 import styles from "./Footer.module.css";
 
+const InstagramIcon: React.FC<{ size?: number }> = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
 const Footer: React.FC = () => {
   const [quickQuoteText, setQuickQuoteText] = useState("");
 
@@ -91,6 +108,16 @@ const Footer: React.FC = () => {
               >
                 <MessageCircle size={16} />
                 <span>Chat on WhatsApp Desk</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/borevaala/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactItemInstagram}
+              >
+                <InstagramIcon size={16} />
+                <span>Follow @borevaala on Instagram</span>
               </a>
 
               <div className={styles.contactItemInfo}>
@@ -185,6 +212,14 @@ const Footer: React.FC = () => {
             <span className={styles.gstTag}>
               <ShieldCheck size={14} /> GST Certified • 100% Quality Guaranteed
             </span>
+            <a
+              href="https://www.instagram.com/borevaala/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIgLink}
+            >
+              <InstagramIcon size={14} /> @borevaala
+            </a>
           </div>
 
           {/* Payment Methods */}

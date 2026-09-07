@@ -15,6 +15,20 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
+    id: "prod-tropical-palm-tote",
+    name: "Tropical Palm Leaf Jute Tote Bag",
+    price: 199,
+    category: "Tote Bags",
+    rating: 4.9,
+    reviews: 96,
+    image: "/bags.jpeg",
+    images: ["/bags.jpeg"],
+    description: "A premium natural golden jute tote bag adorned with an artistic tropical palm leaf botanical print along the bottom border. Designed with soft white rope handles and a wooden loop button closure, offering both style and durability for daily essentials and eco-friendly shopping.",
+    origin: "West Bengal, India",
+    material: "100% Organic Golden Jute, Cotton Rope Handles, Wooden Button",
+    dimensions: "36cm x 38cm x 12cm"
+  },
+  {
     id: "prod-spiderman-art-tote",
     name: "Spider Superhero Art Canvas Tote Bag",
     price: 299,
